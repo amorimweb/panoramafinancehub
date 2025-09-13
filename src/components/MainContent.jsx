@@ -5,6 +5,8 @@ import Screener from './Screener';
 import Ticker from './Ticker';
 import CalendarioEconomico from './CalendarioEconomico';
 import Grafico from './Grafico';
+import TradingIndicators from './TradingIndicators';
+import MarketDataStream from './MarketDataStream';
 import MarketQuotes from './indices/MarketQuotes';
 import IndiceEuropa from './indices/IndiceEuropa';
 import IndiceAsia from './indices/IndiceAsia';
@@ -60,7 +62,7 @@ const MainContent = () => {
                   letterSpacing: '1px',
                   fontSize: '12px',
                   backdropFilter: 'blur(10px)',
-                  boxShadow: '0 4px 15px rgba(249, 115, 22, 0.2)'
+                  boxShadow: '0 4px 15px rgba(249, 115, 22, 0.1)'
                 }}
               >
                 🔴 Dados de Mercado
@@ -70,7 +72,7 @@ const MainContent = () => {
               className="text-white fw-bold mb-4" 
               style={{ 
                 fontSize: '3.5rem', 
-                textShadow: '0 0 30px rgba(249, 115, 22, 0.3), 0 4px 8px rgba(0, 0, 0, 0.8)',
+                textShadow: '0 0 15px rgba(249, 115, 22, 0.2), 0 4px 8px rgba(0, 0, 0, 0.8)',
                 letterSpacing: '-1px',
                 lineHeight: '1.1'
               }}
@@ -98,7 +100,7 @@ const MainContent = () => {
                 height: '3px',
                 background: 'linear-gradient(90deg, rgba(249, 115, 22, 0.8), rgba(234, 88, 12, 0.8), rgba(251, 146, 60, 0.8))',
                 borderRadius: '2px',
-                boxShadow: '0 0 20px rgba(249, 115, 22, 0.5)'
+                boxShadow: '0 0 15px rgba(249, 115, 22, 0.3)'
               }}
             ></div>
 
@@ -158,7 +160,7 @@ const MainContent = () => {
                     width: '50px',
                     height: '50px',
                     background: 'linear-gradient(135deg, rgba(249, 115, 22, 0.9), rgba(234, 88, 12, 0.8))',
-                    boxShadow: '0 8px 25px rgba(249, 115, 22, 0.4), 0 0 30px rgba(249, 115, 22, 0.2)',
+                    boxShadow: '0 8px 25px rgba(249, 115, 22, 0.3), 0 0 20px rgba(249, 115, 22, 0.1)',
                     border: '2px solid rgba(249, 115, 22, 0.3)',
                     fontSize: '20px'
                   }}
@@ -290,18 +292,18 @@ const MainContent = () => {
             background: 'linear-gradient(135deg, rgba(249, 115, 22, 0.9), rgba(234, 88, 12, 0.8))',
             border: '2px solid rgba(249, 115, 22, 0.4)',
             borderRadius: '50%',
-            boxShadow: '0 8px 25px rgba(249, 115, 22, 0.4), 0 0 30px rgba(249, 115, 22, 0.2)',
+            boxShadow: '0 8px 25px rgba(249, 115, 22, 0.3), 0 0 20px rgba(249, 115, 22, 0.1)',
             zIndex: 1000,
             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             backdropFilter: 'blur(10px)'
           }}
           onMouseEnter={(e) => {
             e.target.style.transform = 'translateY(-5px) scale(1.1)';
-            e.target.style.boxShadow = '0 15px 35px rgba(249, 115, 22, 0.6), 0 0 40px rgba(249, 115, 22, 0.3)';
+            e.target.style.boxShadow = '0 15px 35px rgba(249, 115, 22, 0.4), 0 0 30px rgba(249, 115, 22, 0.2)';
           }}
           onMouseLeave={(e) => {
             e.target.style.transform = 'translateY(0) scale(1)';
-            e.target.style.boxShadow = '0 8px 25px rgba(249, 115, 22, 0.4), 0 0 30px rgba(249, 115, 22, 0.2)';
+            e.target.style.boxShadow = '0 8px 25px rgba(249, 115, 22, 0.3), 0 0 20px rgba(249, 115, 22, 0.1)';
           }}
           title="Voltar ao topo"
         >
@@ -316,6 +318,12 @@ const MainContent = () => {
           </span>
         </button>
       )}
+
+      {/* Indicadores de Trading */}
+      <TradingIndicators />
+
+      {/* Stream de Dados de Mercado */}
+      <MarketDataStream />
     </Container>
   );
 };

@@ -25,7 +25,7 @@ const Header = () => {
                 width: '56px', 
                 height: '56px',
                 background: 'linear-gradient(135deg, rgba(249, 115, 22, 0.9) 0%, rgba(234, 88, 12, 0.9) 100%)',
-                boxShadow: '0 8px 25px rgba(249, 115, 22, 0.4), 0 0 30px rgba(249, 115, 22, 0.2)',
+                boxShadow: '0 8px 25px rgba(249, 115, 22, 0.3), 0 0 20px rgba(249, 115, 22, 0.1)',
                 border: '2px solid rgba(249, 115, 22, 0.3)',
                 position: 'relative',
                 overflow: 'hidden'
@@ -62,7 +62,7 @@ const Header = () => {
             </div>
             <div>
               <h3 className="text-white mb-0 fw-bold" style={{ letterSpacing: '-0.5px' }}>
-                PANORAMA<span style={{ color: '#f97316', textShadow: '0 0 20px rgba(249, 115, 22, 0.8)' }}>FINANCE</span>
+                PANORAMA<span style={{ color: '#f97316', textShadow: '0 0 10px rgba(249, 115, 22, 0.5)' }}>FINANCE</span>
               </h3>
               <small 
                 className="text-muted fw-medium" 
@@ -94,7 +94,7 @@ const Header = () => {
               textTransform: 'uppercase',
               letterSpacing: '1px',
               fontSize: '13px',
-              boxShadow: '0 4px 15px rgba(249, 115, 22, 0.2)'
+              boxShadow: '0 4px 15px rgba(249, 115, 22, 0.1)'
             }}
             onMouseEnter={(e) => {
               e.target.style.background = 'linear-gradient(135deg, rgba(249, 115, 22, 0.9), rgba(234, 88, 12, 0.8))';
