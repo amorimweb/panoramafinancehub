@@ -254,6 +254,32 @@ h1, h2, h3, h4, h5, h6 {
     padding-top: 2rem !important;
     padding-bottom: 2rem !important;
   }
+
+  /* Header Responsivo Tablet */
+  .responsive-logo-container .me-4 {
+    width: 48px !important;
+    height: 48px !important;
+    margin-right: 2rem !important;
+  }
+  
+  .responsive-logo-container img {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  /* Toggle button para tablet */
+  .navbar-toggler {
+    border: 2px solid #f97316 !important;
+    background-color: rgba(249, 115, 22, 0.2) !important;
+    border-radius: 10px !important;
+    padding: 0.6rem !important;
+  }
+  
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23f97316' stroke-linecap='round' stroke-miterlimit='10' stroke-width='3.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    width: 1.4em !important;
+    height: 1.4em !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -276,6 +302,89 @@ h1, h2, h3, h4, h5, h6 {
     padding-top: 1.5rem !important;
     padding-bottom: 1.5rem !important;
   }
+
+  /* Header Responsivo */
+  .responsive-brand {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  
+  .responsive-logo-container {
+    margin-bottom: 0.5rem;
+  }
+  
+  .responsive-logo-container .me-4 {
+    margin-right: 1rem !important;
+    width: 40px !important;
+    height: 40px !important;
+  }
+  
+  .responsive-logo-container img {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  /* Navegação responsiva mobile */
+  .responsive-nav {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 1rem;
+    padding-top: 1rem;
+  }
+  
+  .responsive-nav .btn {
+    margin-right: 0 !important;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+  
+  /* Toggle button customizado - Mobile */
+  .navbar-toggler {
+    border: 2px solid #f97316 !important;
+    background-color: rgba(249, 115, 22, 0.25) !important;
+    border-radius: 8px !important;
+    padding: 0.5rem !important;
+  }
+  
+  .navbar-toggler:focus {
+    box-shadow: 0 0 0 0.25rem rgba(249, 115, 22, 0.4) !important;
+    border-color: #f97316 !important;
+  }
+  
+  .navbar-toggler:hover {
+    background-color: rgba(249, 115, 22, 0.35) !important;
+    border-color: #f97316 !important;
+  }
+  
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23f97316' stroke-linecap='round' stroke-miterlimit='10' stroke-width='3.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    width: 1.3em !important;
+    height: 1.3em !important;
+  }
+}
+
+/* Toggle Button Global - Garantir visibilidade em todas as telas */
+.navbar-toggler {
+  border: 2px solid #f97316 !important;
+  background-color: rgba(249, 115, 22, 0.2) !important;
+  border-radius: 8px !important;
+  padding: 0.5rem !important;
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.25rem rgba(249, 115, 22, 0.4) !important;
+  border-color: #f97316 !important;
+}
+
+.navbar-toggler:hover {
+  background-color: rgba(249, 115, 22, 0.3) !important;
+  border-color: #f97316 !important;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23f97316' stroke-linecap='round' stroke-miterlimit='10' stroke-width='3.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+  width: 1.3em !important;
+  height: 1.3em !important;
 }
 
 /* Scrollbar tema Trading */

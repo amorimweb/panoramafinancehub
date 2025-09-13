@@ -5,7 +5,7 @@ import Screener from './Screener';
 import Ticker from './Ticker';
 import CalendarioEconomico from './CalendarioEconomico';
 import Grafico from './Grafico';
-import TradingIndicators from './TradingIndicators';
+
 import MarketDataStream from './MarketDataStream';
 import MarketQuotes from './indices/MarketQuotes';
 import IndiceEuropa from './indices/IndiceEuropa';
@@ -317,9 +317,6 @@ const MainContent = () => {
           </span>
         </button>
       )}
-
-      {/* Indicadores de Trading */}
-      <TradingIndicators />
 
       {/* Stream de Dados de Mercado */}
       <MarketDataStream />

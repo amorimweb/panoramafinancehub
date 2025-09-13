@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <Navbar 
       expand="lg" 
-      className="px-4 py-4 shadow-2xl"
+      className="px-2 px-md-4 py-3 py-md-4 shadow-2xl"
       style={{ 
         background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%)',
         backdropFilter: 'blur(20px)',
@@ -17,8 +17,8 @@ const Header = () => {
     >
       <Container fluid>
         {/* Logo e Brand */}
-        <Navbar.Brand className="d-flex align-items-center">
-          <div className="d-flex align-items-center">
+        <Navbar.Brand className="d-flex align-items-center responsive-brand">
+                      <div className="d-flex align-items-center responsive-logo-container">
             <div 
               className="rounded-4 d-flex align-items-center justify-content-center me-4 shadow-2xl" 
               style={{
@@ -71,8 +71,18 @@ const Header = () => {
           </div>
         </Navbar.Brand>
 
-        {/* Navigation Menu - Apenas Cursos e Perfil */}
-        <Nav className="ms-auto d-flex align-items-center">
+        {/* Toggle button para mobile */}
+        <Navbar.Toggle 
+          aria-controls="navbar-nav" 
+          style={{
+            borderColor: 'rgba(249, 115, 22, 0.3)',
+            padding: '0.375rem 0.5rem'
+          }}
+        />
+
+        <Navbar.Collapse id="navbar-nav">
+          {/* Navigation Menu - Apenas Cursos e Perfil */}
+          <Nav className="ms-auto d-flex align-items-center responsive-nav">
           <Button
             variant="outline-light"
             className="me-4 px-5 py-3 fw-bold"
@@ -176,6 +186,7 @@ const Header = () => {
              </div>
            </div>
         </Nav>
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );
