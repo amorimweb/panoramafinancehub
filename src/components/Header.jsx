@@ -31,23 +31,15 @@ const Header = () => {
                 overflow: 'hidden'
               }}
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M4 16 L8 12 L12 8 L16 4 L20 0" 
-                      stroke="#ffffff" 
-                      strokeWidth="2.5" 
-                      fill="none" 
-                      strokeLinecap="round"/>
-                <path d="M18 2 L20 0 L18 -2 M20 0 L16 0" 
-                      stroke="#ffffff" 
-                      strokeWidth="2.5" 
-                      fill="none" 
-                      strokeLinecap="round"/>
-                <circle cx="4" cy="16" r="1" fill="#ffffff" opacity="0.8"/>
-                <circle cx="8" cy="12" r="1" fill="#ffffff" opacity="0.8"/>
-                <circle cx="12" cy="8" r="1" fill="#ffffff" opacity="0.8"/>
-                <circle cx="16" cy="4" r="1" fill="#ffffff" opacity="0.8"/>
-                <circle cx="20" cy="0" r="1" fill="#ffffff" opacity="0.8"/>
-              </svg>
+              <img 
+                src="/finance.png" 
+                alt="Finance Logo" 
+                style={{
+                  width: '32px',
+                  height: '32px',
+                  objectFit: 'contain'
+                }}
+              />
               <div 
                 style={{
                   position: 'absolute',
