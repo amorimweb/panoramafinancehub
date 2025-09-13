@@ -76,11 +76,11 @@ const IndiceEnergia = () => {
         
         containerRef.current.appendChild(script);
         
-        // Adicionar copyright
-        const copyrightDiv = document.createElement('div');
-        copyrightDiv.className = 'tradingview-widget-copyright';
-        copyrightDiv.innerHTML = '<a href="https://br.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a>';
-        containerRef.current.appendChild(copyrightDiv);
+        // // Adicionar copyright
+        // const copyrightDiv = document.createElement('div');
+        // copyrightDiv.className = 'tradingview-widget-copyright';
+        // copyrightDiv.innerHTML = '<a href="https://br.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a>';
+        // containerRef.current.appendChild(copyrightDiv);
         
       } catch (error) {
         console.warn('Erro ao criar widget de commodities energéticos:', error);

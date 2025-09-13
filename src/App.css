@@ -1,12 +1,17 @@
-/* Estilos customizados específicos do App */
+/* Estilos customizados específicos do App - TRADING THEME */
 
-/* Background gradiente principal */
+/* Background principal - Tema Trading Profissional */
 .bg-gradient-dark {
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #1a1a2e 100%);
+  background: 
+    linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 25%, #2a2f3e 50%, #1a1f2e 75%, #0a0e1a 100%),
+    radial-gradient(ellipse at top, rgba(249, 115, 22, 0.15) 0%, transparent 70%),
+    radial-gradient(ellipse at bottom, rgba(234, 88, 12, 0.15) 0%, transparent 70%);
   min-height: 100vh;
   position: relative;
+  overflow-x: hidden;
 }
 
+/* Padrão de grid sutil para simular terminal de trading */
 .bg-gradient-dark::before {
   content: '';
   position: fixed;
@@ -14,71 +19,255 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    radial-gradient(circle at 20% 20%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(0, 123, 255, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 60%, rgba(255, 193, 7, 0.05) 0%, transparent 50%);
+  background-image: 
+    linear-gradient(rgba(249, 115, 22, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(249, 115, 22, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
   pointer-events: none;
+  z-index: 0;
+  animation: gridPulse 4s ease-in-out infinite;
+}
+
+/* Efeitos de luz dinâmicos */
+.bg-gradient-dark::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(249, 115, 22, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(234, 88, 12, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 10%, rgba(251, 146, 60, 0.06) 0%, transparent 60%),
+    radial-gradient(circle at 80% 40%, rgba(220, 38, 38, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+  animation: lightPulse 6s ease-in-out infinite alternate;
+}
+
+/* Cards Profissionais de Trading */
+.card-dark {
+  background: 
+    linear-gradient(145deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%) !important;
+  backdrop-filter: blur(25px) !important;
+  border: 1px solid rgba(249, 115, 22, 0.2) !important;
+  border-radius: 20px !important;
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(249, 115, 22, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Efeito de borda animada */
+.card-dark::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 20px;
+  padding: 1px;
+  background: linear-gradient(135deg, 
+    rgba(249, 115, 22, 0.6) 0%,
+    rgba(234, 88, 12, 0.4) 25%,
+    rgba(251, 146, 60, 0.4) 50%,
+    rgba(220, 38, 38, 0.4) 75%,
+    rgba(249, 115, 22, 0.6) 100%);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
   z-index: -1;
 }
 
-/* Melhorias nos cards */
-.card-dark {
-  background: rgba(255, 255, 255, 0.05) !important;
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 16px !important;
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.3),
-    0 2px 8px rgba(255, 107, 53, 0.1) !important;
-  transition: all 0.3s ease;
-}
-
 .card-dark:hover {
-  transform: translateY(-4px);
+  transform: translateY(-8px) scale(1.02);
   box-shadow: 
-    0 12px 40px rgba(0, 0, 0, 0.4),
-    0 4px 16px rgba(255, 107, 53, 0.2) !important;
-  border-color: rgba(255, 107, 53, 0.3) !important;
+    0 35px 70px -15px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(249, 115, 22, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 0 50px rgba(249, 115, 22, 0.15) !important;
+  border-color: rgba(249, 115, 22, 0.4) !important;
 }
 
-/* Melhorias no texto */
+.card-dark:hover::before {
+  opacity: 1;
+  animation: borderGlow 2s ease-in-out infinite alternate;
+}
+
+/* Efeito de scan line nos cards */
+.card-dark::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(249, 115, 22, 0.8), 
+    transparent);
+  transition: top 0.6s ease;
+  z-index: 2;
+}
+
+.card-dark:hover::after {
+  top: 100%;
+}
+
+/* Tipografia Profissional para Trading */
 .text-white {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(249, 115, 22, 0.3);
+  font-weight: 600;
+  letter-spacing: 0.025em;
 }
 
-/* Animações suaves */
+/* Títulos com efeito neon sutil */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700;
+  text-shadow: 
+    0 0 10px rgba(249, 115, 22, 0.5),
+    0 2px 8px rgba(0, 0, 0, 0.8);
+  letter-spacing: -0.025em;
+}
+
+/* Números e dados importantes */
+.trading-number {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-weight: 600;
+  text-shadow: 0 0 15px currentColor;
+  letter-spacing: 0.05em;
+}
+
+/* Animações suaves e profissionais */
 * {
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Scrollbar customizada */
+/* Animações customizadas */
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes lightPulse {
+  0% { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+
+@keyframes borderGlow {
+  0% { filter: brightness(1); }
+  100% { filter: brightness(1.5); }
+}
+
+@keyframes dataFlow {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100vw); }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.7; 
+    transform: scale(1.1);
+  }
+}
+
+/* Efeito de dados fluindo */
+.data-stream {
+  position: fixed;
+  top: 20%;
+  left: -100px;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(249, 115, 22, 0.8), 
+    transparent);
+  animation: dataFlow 15s linear infinite;
+  z-index: -1;
+}
+
+.data-stream:nth-child(2) {
+  top: 40%;
+  animation-delay: -5s;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(234, 88, 12, 0.6), 
+    transparent);
+}
+
+.data-stream:nth-child(3) {
+  top: 60%;
+  animation-delay: -10s;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(251, 146, 60, 0.6), 
+    transparent);
+}
+
+/* Scrollbar tema Trading */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
+  background: rgba(15, 23, 42, 0.8);
+  border-radius: 6px;
+  border: 1px solid rgba(249, 115, 22, 0.1);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #ff6b35, #f7931e);
-  border-radius: 4px;
+  background: linear-gradient(135deg, 
+    rgba(249, 115, 22, 0.8) 0%, 
+    rgba(234, 88, 12, 0.8) 100%);
+  border-radius: 6px;
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.3);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #f7931e, #ff6b35);
+  background: linear-gradient(135deg, 
+    rgba(249, 115, 22, 1) 0%, 
+    rgba(234, 88, 12, 1) 100%);
+  box-shadow: 0 0 15px rgba(249, 115, 22, 0.5);
 }
 
-/* Efeitos de hover nos botões */
+::-webkit-scrollbar-corner {
+  background: rgba(15, 23, 42, 0.8);
+}
+
+/* Botões tema Trading Profissional */
 .btn {
-  border-radius: 25px !important;
-  font-weight: 500;
+  border-radius: 12px !important;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(249, 115, 22, 0.3) !important;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(249, 115, 22, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn::before {
@@ -88,12 +277,27 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(249, 115, 22, 0.3), 
+    transparent);
+  transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(249, 115, 22, 0.3);
+  border-color: rgba(249, 115, 22, 0.6) !important;
 }
 
 .btn:hover::before {
   left: 100%;
+}
+
+.btn:active {
+  transform: translateY(0);
 }
 
 /* Container de widgets TradingView */
@@ -115,7 +319,7 @@
   
   .bg-gradient-dark::before {
     background: 
-      radial-gradient(circle at 50% 20%, rgba(255, 107, 53, 0.15) 0%, transparent 60%),
-      radial-gradient(circle at 50% 80%, rgba(0, 123, 255, 0.15) 0%, transparent 60%);
+      radial-gradient(circle at 50% 20%, rgba(249, 115, 22, 0.15) 0%, transparent 60%),
+      radial-gradient(circle at 50% 80%, rgba(234, 88, 12, 0.15) 0%, transparent 60%);
   }
 }
