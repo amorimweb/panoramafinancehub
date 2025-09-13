@@ -337,17 +337,17 @@ h1, h2, h3, h4, h5, h6 {
 
 @keyframes dataStream {
   0% { 
-    transform: translateX(-100px); 
+    transform: translateX(-150px); 
     opacity: 0; 
   }
-  10% { 
-    opacity: 1; 
+  15% { 
+    opacity: 0.6; 
   }
-  90% { 
-    opacity: 1; 
+  85% { 
+    opacity: 0.6; 
   }
   100% { 
-    transform: translateX(calc(100vw + 100px)); 
+    transform: translateX(calc(100vw + 150px)); 
     opacity: 0; 
   }
 }
