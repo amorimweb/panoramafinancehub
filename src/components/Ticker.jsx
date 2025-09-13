@@ -1,8 +1,21 @@
-import React, { useEffect, useRef, memo } from 'react';
+import React, { useEffect, useRef, memo, useState } from 'react';
 
 const Ticker = () => {
   const containerRef = useRef(null);
   const scriptLoaded = useRef(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detectar se é mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const loadWidget = () => {
     if (!containerRef.current) {
@@ -19,7 +32,9 @@ const Ticker = () => {
       containerRef.current.appendChild(widgetContainer);
 
       const script = document.createElement("script");
-      script.src = "https://s3.tradingview.com/external-embedding/embed-widget-tickers.js";
+      script.src = isMobile 
+        ? "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
+        : "https://s3.tradingview.com/external-embedding/embed-widget-tickers.js";
       script.type = "text/javascript";
       script.async = true;
       
@@ -32,7 +47,7 @@ const Ticker = () => {
         console.warn('Erro ao carregar widget ticker:', error);
       };
       
-      script.innerHTML = JSON.stringify({
+      const baseConfig = {
         "symbols": [
           {
             "proName": "FOREXCOM:SPXUSD",
@@ -54,9 +69,16 @@ const Ticker = () => {
         "colorTheme": "dark",
         "locale": "br",
         "largeChartUrl": "",
-        "isTransparent": true,
+        "isTransparent": isMobile ? false : true,
         "showSymbolLogo": true
-      });
+      };
+
+      // Adicionar configurações específicas para mobile
+      if (isMobile) {
+        baseConfig.displayMode = "adaptive";
+      }
+
+      script.innerHTML = JSON.stringify(baseConfig);
       
       containerRef.current.appendChild(script);
       
@@ -88,7 +110,7 @@ const Ticker = () => {
         containerRef.current.innerHTML = '';
       }
     };
-  }, []);
+  }, [isMobile]); // Recarregar quando mudar entre mobile/desktop
 
   return (
     <div 
@@ -137,7 +159,7 @@ const Ticker = () => {
               textShadow: '0 0 10px rgba(249, 115, 22, 0.3)'
             }}
           >
-            Mercado
+{isMobile ? 'Ticker Tape' : 'Mercado'}
           </h6>
         </div>
         <div className="d-flex align-items-center">
@@ -201,7 +223,7 @@ const Ticker = () => {
         className="tradingview-widget-container"
         ref={containerRef}
         style={{ 
-          minHeight: '80px', 
+          minHeight: isMobile ? '60px' : '80px', 
           width: '100%',
           position: 'relative',
           overflow: 'hidden'
@@ -225,7 +247,7 @@ const Ticker = () => {
           left: 0,
           right: 0,
           height: '2px',
-          background: 'linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.5), transparent)',
+          background: 'linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.5), transparent)',
           zIndex: 10
         }}
       ></div>

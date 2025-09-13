@@ -61,7 +61,7 @@ const Header = () => {
               ></div>
             </div>
             <div>
-              <h3 className="text-white mb-0 fw-bold" style={{ letterSpacing: '-0.5px' }}>
+              <h3 className="text-white mb-0 fw-bold header-title" style={{ letterSpacing: '-0.5px' }}>
                 PANORAMA<span style={{ color: '#f97316', textShadow: '0 0 10px rgba(249, 115, 22, 0.5)' }}>FINANCE</span>
               </h3>
               <small 

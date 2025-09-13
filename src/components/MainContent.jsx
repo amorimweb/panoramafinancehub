@@ -46,7 +46,7 @@ const MainContent = () => {
       <div className="data-stream"></div>
       
       <div className="d-flex flex-column min-vh-100">
-        <div className="p-5" style={{ paddingTop: '3rem', paddingBottom: '4rem' }}>
+        <div className="p-5 main-container" style={{ paddingTop: '3rem', paddingBottom: '4rem' }}>
           
           {/* Hero Section */}
           <div className="text-center mb-6">
@@ -69,9 +69,8 @@ const MainContent = () => {
               </span>
             </div>
             <h1 
-              className="text-white fw-bold mb-4" 
+              className="text-white fw-bold mb-4 hero-title" 
               style={{ 
-                fontSize: '3.5rem', 
                 textShadow: '0 0 15px rgba(249, 115, 22, 0.2), 0 4px 8px rgba(0, 0, 0, 0.8)',
                 letterSpacing: '-1px',
                 lineHeight: '1.1'
@@ -79,8 +78,8 @@ const MainContent = () => {
             >
               PANORAMA<span style={{ color: '#f97316' }}>FINANCE</span>
               <div 
+                className="hero-subtitle"
                 style={{ 
-                  fontSize: '1.8rem', 
                   fontWeight: '400',
                   marginTop: '0.5rem',
                   color: 'rgba(156, 163, 175, 0.9)'
