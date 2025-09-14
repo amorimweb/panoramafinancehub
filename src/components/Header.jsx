@@ -1,7 +1,10 @@
 import React from 'react';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
+  const location = useLocation();
+  
   return (
     <Navbar 
       expand="lg" 
@@ -17,7 +20,7 @@ const Header = () => {
     >
       <Container fluid>
         {/* Logo e Brand */}
-        <Navbar.Brand className="d-flex align-items-center responsive-brand">
+        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center responsive-brand">
                       <div className="d-flex align-items-center responsive-logo-container">
             <div 
               className="rounded-4 d-flex align-items-center justify-content-center me-4 shadow-2xl" 
@@ -56,7 +59,7 @@ const Header = () => {
               <h3 className="text-white mb-0 fw-bold header-title" style={{ letterSpacing: '-0.5px' }}>
                 PANORAMA<span style={{ color: '#f97316', textShadow: '0 0 10px rgba(249, 115, 22, 0.5)' }}>FINANCE</span>
               </h3>
-              <small 
+              {/* <small 
                 className="text-muted fw-medium" 
                 style={{ 
                   color: 'rgba(156, 163, 175, 0.8)',
@@ -66,7 +69,7 @@ const Header = () => {
                 }}
               >
                 Professional Trading Hub
-              </small>
+              </small> */}
             </div>
           </div>
         </Navbar.Brand>
@@ -81,64 +84,113 @@ const Header = () => {
         />
 
         <Navbar.Collapse id="navbar-nav">
-          {/* Navigation Menu - Apenas Cursos e Perfil */}
+          {/* Navigation Menu - Home, Cursos e Perfil */}
           <Nav className="ms-auto d-flex align-items-center responsive-nav">
-          <Button
-            variant="outline-light"
-            className="me-4 px-5 py-3 fw-bold"
-            style={{
-              borderColor: 'rgba(249, 115, 22, 0.6)',
-              color: '#f97316',
-              transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-              borderRadius: '12px',
-              background: 'rgba(249, 115, 22, 0.1)',
-              backdropFilter: 'blur(10px)',
-              textTransform: 'uppercase',
-              letterSpacing: '1px',
-              fontSize: '13px',
-              boxShadow: '0 4px 15px rgba(249, 115, 22, 0.1)'
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.background = 'linear-gradient(135deg, rgba(249, 115, 22, 0.9), rgba(234, 88, 12, 0.8))';
-              e.target.style.color = 'white';
-              e.target.style.transform = 'translateY(-3px)';
-              e.target.style.boxShadow = '0 12px 30px rgba(249, 115, 22, 0.4)';
-              e.target.style.borderColor = 'rgba(249, 115, 22, 0.8)';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.background = 'rgba(249, 115, 22, 0.1)';
-              e.target.style.color = '#f97316';
-              e.target.style.transform = 'translateY(0)';
-              e.target.style.boxShadow = '0 4px 15px rgba(249, 115, 22, 0.2)';
-              e.target.style.borderColor = 'rgba(249, 115, 22, 0.6)';
-            }}
-          >
-            📈 Trading Academy
-          </Button>
+          <Link to="/">
+            <Button
+              variant="outline-light"
+              className="me-3 px-4 py-3 fw-bold"
+              style={{
+                borderColor: location.pathname === '/' ? 'rgba(249, 115, 22, 0.8)' : 'rgba(249, 115, 22, 0.6)',
+                color: location.pathname === '/' ? 'white' : '#f97316',
+                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                borderRadius: '12px',
+                background: location.pathname === '/' ? 'linear-gradient(135deg, rgba(249, 115, 22, 0.9), rgba(234, 88, 12, 0.8))' : 'rgba(249, 115, 22, 0.1)',
+                backdropFilter: 'blur(10px)',
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                fontSize: '13px',
+                boxShadow: location.pathname === '/' ? '0 12px 30px rgba(249, 115, 22, 0.4)' : '0 4px 15px rgba(249, 115, 22, 0.1)'
+              }}
+              onMouseEnter={(e) => {
+                if (location.pathname !== '/') {
+                  e.target.style.background = 'linear-gradient(135deg, rgba(249, 115, 22, 0.9), rgba(234, 88, 12, 0.8))';
+                  e.target.style.color = 'white';
+                  e.target.style.transform = 'translateY(-3px)';
+                  e.target.style.boxShadow = '0 12px 30px rgba(249, 115, 22, 0.4)';
+                  e.target.style.borderColor = 'rgba(249, 115, 22, 0.8)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (location.pathname !== '/') {
+                  e.target.style.background = 'rgba(249, 115, 22, 0.1)';
+                  e.target.style.color = '#f97316';
+                  e.target.style.transform = 'translateY(0)';
+                  e.target.style.boxShadow = '0 4px 15px rgba(249, 115, 22, 0.2)';
+                  e.target.style.borderColor = 'rgba(249, 115, 22, 0.6)';
+                }
+              }}
+            >
+              🏠 Home
+            </Button>
+          </Link>
+          <Link to="/cursos">
+            <Button
+              variant="outline-light"
+              className="me-4 px-5 py-3 fw-bold"
+              style={{
+                borderColor: location.pathname === '/cursos' ? 'rgba(249, 115, 22, 0.8)' : 'rgba(249, 115, 22, 0.6)',
+                color: location.pathname === '/cursos' ? 'white' : '#f97316',
+                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                borderRadius: '12px',
+                background: location.pathname === '/cursos' ? 'linear-gradient(135deg, rgba(249, 115, 22, 0.9), rgba(234, 88, 12, 0.8))' : 'rgba(249, 115, 22, 0.1)',
+                backdropFilter: 'blur(10px)',
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                fontSize: '13px',
+                boxShadow: location.pathname === '/cursos' ? '0 12px 30px rgba(249, 115, 22, 0.4)' : '0 4px 15px rgba(249, 115, 22, 0.1)'
+              }}
+              onMouseEnter={(e) => {
+                if (location.pathname !== '/cursos') {
+                  e.target.style.background = 'linear-gradient(135deg, rgba(249, 115, 22, 0.9), rgba(234, 88, 12, 0.8))';
+                  e.target.style.color = 'white';
+                  e.target.style.transform = 'translateY(-3px)';
+                  e.target.style.boxShadow = '0 12px 30px rgba(249, 115, 22, 0.4)';
+                  e.target.style.borderColor = 'rgba(249, 115, 22, 0.8)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (location.pathname !== '/cursos') {
+                  e.target.style.background = 'rgba(249, 115, 22, 0.1)';
+                  e.target.style.color = '#f97316';
+                  e.target.style.transform = 'translateY(0)';
+                  e.target.style.boxShadow = '0 4px 15px rgba(249, 115, 22, 0.2)';
+                  e.target.style.borderColor = 'rgba(249, 115, 22, 0.6)';
+                }
+              }}
+            >
+              📚 Cursos
+            </Button>
+          </Link>
           
           {/* User Profile */}
-                     <div 
-             className="d-flex align-items-center px-4 py-3 rounded-3 cursor-pointer"
-             style={{
-               background: 'linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.1))',
-               backdropFilter: 'blur(15px)',
-               border: '1px solid rgba(249, 115, 22, 0.3)',
-               transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-               boxShadow: '0 4px 15px rgba(249, 115, 22, 0.2)'
-             }}
-             onMouseEnter={(e) => {
-               e.currentTarget.style.background = 'linear-gradient(135deg, rgba(249, 115, 22, 0.3), rgba(234, 88, 12, 0.25))';
-               e.currentTarget.style.transform = 'translateY(-3px)';
-               e.currentTarget.style.boxShadow = '0 8px 25px rgba(249, 115, 22, 0.3)';
-               e.currentTarget.style.borderColor = 'rgba(249, 115, 22, 0.5)';
-             }}
-             onMouseLeave={(e) => {
-               e.currentTarget.style.background = 'linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.1))';
-               e.currentTarget.style.transform = 'translateY(0)';
-               e.currentTarget.style.boxShadow = '0 4px 15px rgba(249, 115, 22, 0.2)';
-               e.currentTarget.style.borderColor = 'rgba(249, 115, 22, 0.3)';
-             }}
-           >
+          <Link to="/perfil">
+            <div 
+              className="d-flex align-items-center px-4 py-3 rounded-3 cursor-pointer"
+              style={{
+                background: location.pathname === '/perfil' ? 'linear-gradient(135deg, rgba(249, 115, 22, 0.3), rgba(234, 88, 12, 0.25))' : 'linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.1))',
+                backdropFilter: 'blur(15px)',
+                border: location.pathname === '/perfil' ? '1px solid rgba(249, 115, 22, 0.5)' : '1px solid rgba(249, 115, 22, 0.3)',
+                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                boxShadow: location.pathname === '/perfil' ? '0 8px 25px rgba(249, 115, 22, 0.3)' : '0 4px 15px rgba(249, 115, 22, 0.2)'
+              }}
+              onMouseEnter={(e) => {
+                if (location.pathname !== '/perfil') {
+                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(249, 115, 22, 0.3), rgba(234, 88, 12, 0.25))';
+                  e.currentTarget.style.transform = 'translateY(-3px)';
+                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(249, 115, 22, 0.3)';
+                  e.currentTarget.style.borderColor = 'rgba(249, 115, 22, 0.5)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (location.pathname !== '/perfil') {
+                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.1))';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 4px 15px rgba(249, 115, 22, 0.2)';
+                  e.currentTarget.style.borderColor = 'rgba(249, 115, 22, 0.3)';
+                }
+              }}
+            >
              <div 
                className="rounded-circle d-flex align-items-center justify-content-center me-3" 
                style={{
@@ -170,21 +222,22 @@ const Header = () => {
                    letterSpacing: '0.5px'
                  }}
                >
-                 Professional
+                 Meu Perfil
                </div>
-               <div 
+               {/* <div 
                  className="text-muted fw-medium" 
                  style={{ 
-                   fontSize: '10px',
-                   color: 'rgba(156, 163, 175, 0.8)',
+                   fontSize: '8px',
+                  //  color: 'white',
                    textTransform: 'uppercase',
                    letterSpacing: '0.5px'
                  }}
                >
-                 Active Trader
-               </div>
+                 Usário ativo
+               </div> */}
              </div>
            </div>
+          </Link>
         </Nav>
         </Navbar.Collapse>
       </Container>

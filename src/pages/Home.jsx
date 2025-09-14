@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import StockHeatmap from './StockHeatmap';
-import Screener from './Screener';
-import Ticker from './Ticker';
-import CalendarioEconomico from './CalendarioEconomico';
-import Grafico from './Grafico';
+import StockHeatmap from '../components/StockHeatmap';
+import Screener from '../components/Screener';
+import Ticker from '../components/Ticker';
+import CalendarioEconomico from '../components/CalendarioEconomico';
+import Grafico from '../components/Grafico';
 
-import MarketDataStream from './MarketDataStream';
-import MarketQuotes from './indices/MarketQuotes';
-import IndiceEuropa from './indices/IndiceEuropa';
-import IndiceAsia from './indices/IndiceAsia';
-import IndiceAgricolas from './indices/IndiceAgricolas';
-import IndiceEnergia from './indices/IndiceEnergia';
-import IndiceFuturos from './indices/IndiceFuturos';
-import IndiceNasdaq from './indices/IndiceNasdaq';
+import MarketDataStream from '../components/MarketDataStream';
+import MarketQuotes from '../components/indices/MarketQuotes';
+import IndiceEuropa from '../components/indices/IndiceEuropa';
+import IndiceAsia from '../components/indices/IndiceAsia';
+import IndiceAgricolas from '../components/indices/IndiceAgricolas';
+import IndiceEnergia from '../components/indices/IndiceEnergia';
+import IndiceFuturos from '../components/indices/IndiceFuturos';
+import IndiceNasdaq from '../components/indices/IndiceNasdaq';
 
-const MainContent = () => {
+const Home = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
@@ -171,7 +171,7 @@ const MainContent = () => {
                     Global Market Indices
                   </div>
                   <small 
-                    className=" fw-medium d-block text-white" 
+                    className="fw-medium d-block text-white" 
                     style={{ 
                       fontSize: '12px', 
                       letterSpacing: '1px',
@@ -182,7 +182,7 @@ const MainContent = () => {
                   </small>
                 </div>
               </h2>
-                            
+                              
             </div>
           </div>
           <Row className="mb-5 g-4">
@@ -324,4 +324,4 @@ const MainContent = () => {
   );
 };
 
-export default MainContent; 
+export default Home;
