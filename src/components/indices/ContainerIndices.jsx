@@ -1,14 +1,24 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
+import { useTheme } from '../../contexts/ThemeContext';
 
 const ContainerIndices = ({ title = "América", children, isActive = true }) => {
+  const { isDarkMode, colors } = useTheme();
+  
   return (
-    <Card className="card-dark h-100">
+    <Card className="h-100" style={{ 
+      backgroundColor: colors.cardBg,
+      border: `1px solid ${colors.border}`,
+      transition: 'all 0.3s ease'
+    }}>
       <Card.Header 
         className="border-0 px-4 py-3" 
         style={{ 
-          background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.8))',
-          borderBottom: '1px solid rgba(249, 115, 22, 0.1)'
+          background: isDarkMode 
+            ? 'linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.8))'
+            : 'linear-gradient(135deg, rgba(241, 245, 249, 0.9), rgba(226, 232, 240, 0.8))',
+          borderBottom: `1px solid ${colors.border}`,
+          transition: 'all 0.3s ease'
         }}
       >
         <div className="d-flex align-items-center justify-content-between">
@@ -35,12 +45,15 @@ const ContainerIndices = ({ title = "América", children, isActive = true }) => 
               ></div>
             </div>
             <h6 
-              className="text-white mb-0 fw-bold" 
+              className="mb-0 fw-bold" 
               style={{ 
                 fontSize: '14px',
                 letterSpacing: '0.5px',
                 textTransform: 'uppercase',
-                textShadow: '0 0 10px rgba(249, 115, 22, 0.3)'
+                textShadow: isDarkMode 
+                  ? '0 0 10px rgba(249, 115, 22, 0.3)' 
+                  : '0 1px 2px rgba(0, 0, 0, 0.1)',
+                color: colors.text
               }}
             >
               {title}
@@ -49,7 +62,9 @@ const ContainerIndices = ({ title = "América", children, isActive = true }) => 
           <div 
             className="badge px-2 py-1"
             style={{
-              background: isActive ? 'rgba(249, 115, 22, 0.2)' : 'rgba(239, 68, 68, 0.2)',
+              background: isActive 
+                ? (isDarkMode ? 'rgba(249, 115, 22, 0.2)' : 'rgba(249, 115, 22, 0.15)') 
+                : (isDarkMode ? 'rgba(239, 68, 68, 0.2)' : 'rgba(239, 68, 68, 0.15)'),
               color: isActive ? '#f97316' : '#ef4444',
               border: `1px solid ${isActive ? 'rgba(249, 115, 22, 0.3)' : 'rgba(239, 68, 68, 0.3)'}`,
               borderRadius: '8px',

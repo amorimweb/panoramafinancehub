@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, memo } from 'react';
 import { Card } from 'react-bootstrap';
+import { useTheme } from '../contexts/ThemeContext';
 
 const Screener = () => {
   const containerRef = useRef(null);
   const scriptLoaded = useRef(false);
+  const { colorTheme, isDarkMode, colors } = useTheme();
 
   useEffect(() => {
     const loadWidget = () => {
@@ -40,26 +42,20 @@ const Screener = () => {
           "defaultScreen": "most_capitalized",
           "isTransparent": false,
           "locale": "br",
-          "colorTheme": "dark",
+          "colorTheme": colorTheme,
           "width": "100%",
           "height": 550
         });
         
         containerRef.current.appendChild(script);
         
-        // Adicionar copyright
-        // const copyrightDiv = document.createElement('div');
-        // copyrightDiv.className = 'tradingview-widget-copyright';
-        // copyrightDiv.innerHTML = '<a href="https://br.tradingview.com/screener/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a>';
-        // containerRef.current.appendChild(copyrightDiv);
-        
       } catch (error) {
         console.warn('Erro ao criar widget de screener:', error);
       }
     };
 
-    // Delay para evitar conflitos com outros widgets
-    const timeoutId = setTimeout(loadWidget, 200);
+    // Delay para evitar conflitos
+    const timeoutId = setTimeout(loadWidget, 100);
 
     // Cleanup function
     return () => {
@@ -69,21 +65,40 @@ const Screener = () => {
         containerRef.current.innerHTML = '';
       }
     };
-  }, []);
+  }, [colorTheme]); // Recarregar quando o tema mudar
 
   return (
-    <Card className="card-dark h-100">
-      <Card.Header className="bg-primary-dark border-0">
+    <Card className="h-100" style={{ 
+      backgroundColor: colors.cardBg,
+      border: `1px solid ${colors.border}`,
+      transition: 'all 0.3s ease'
+    }}>
+      <Card.Header style={{
+        background: isDarkMode 
+          ? 'linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%)'
+          : 'linear-gradient(135deg, rgba(241, 245, 249, 0.9) 0%, rgba(226, 232, 240, 0.9) 100%)',
+        borderBottom: `1px solid ${colors.border}`,
+        transition: 'all 0.3s ease'
+      }}>
         <div className="d-flex align-items-center justify-content-between">
           <div className="d-flex align-items-center">
             <div className="bg-accent-orange rounded d-flex align-items-center justify-content-center me-2" 
                  style={{width: '24px', height: '24px'}}>
-              <span className="text-white fw-bold" style={{fontSize: '12px'}}>📋</span>
+              <span className="text-white fw-bold" style={{fontSize: '12px'}}>📊</span>
             </div>
-            <h6 className="text-white mb-0 fw-bold">Screener - Mercado Americano</h6>
+            <h6 className="mb-0 fw-bold" style={{ 
+              color: colors.text,
+              textShadow: isDarkMode 
+                ? '0 0 5px rgba(249, 115, 22, 0.2)' 
+                : '0 1px 2px rgba(0, 0, 0, 0.1)'
+            }}>
+              Screener de Ações - América
+            </h6>
           </div>
           <div className="d-flex align-items-center">
-            <small className="text-muted me-2">Maiores Capitalizações</small>
+            <small className="me-2" style={{ color: colors.textMuted }}>
+              Mais Capitalizadas
+            </small>
             <div className="bg-success rounded-circle" style={{width: '8px', height: '8px'}}></div>
           </div>
         </div>
@@ -93,34 +108,16 @@ const Screener = () => {
         <div 
           className="tradingview-widget-container"
           ref={containerRef}
-          style={{ minHeight: '550px' }}
+          style={{ minHeight: '550px', height: '550px' }}
         >
           <div className="d-flex align-items-center justify-content-center h-100">
             <div className="text-center">
               <div className="spinner-border text-warning mb-2" role="status" style={{width: '1.5rem', height: '1.5rem'}}>
                 <span className="visually-hidden">Carregando...</span>
               </div>
-              <p className="text-muted small">Carregando Screener...</p>
-            </div>
-          </div>
-        </div>
-        
-        <div className="mt-3 pt-2 border-top border-secondary">
-          <div className="row text-center g-2">
-            <div className="col-3">
-              <small className="text-muted d-block" style={{fontSize: '0.7rem'}}>Mercado</small>
-              <small className="text-white fw-bold" style={{fontSize: '0.75rem'}}>América</small>
-            </div>
-            <div className="col-3">
-              <small className="text-muted d-block" style={{fontSize: '0.7rem'}}>Filtro</small>
-              <small className="text-white fw-bold" style={{fontSize: '0.75rem'}}>Maior Cap.</small>
-            </div>
-            <div className="col-3">
-              <small className="text-muted d-block" style={{fontSize: '0.7rem'}}>Coluna</small>
-              <small className="text-white fw-bold" style={{fontSize: '0.75rem'}}>Overview</small>
-            </div>
-            <div className="col-3">
-              <small className="text-success fw-bold" style={{fontSize: '0.75rem'}}>● Live</small>
+              <p className="small" style={{ color: colors.textMuted }}>
+                Carregando Screener...
+              </p>
             </div>
           </div>
         </div>

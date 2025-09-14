@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, memo } from 'react';
+import { useTheme } from '../../contexts/ThemeContext';
 import ContainerIndices from './ContainerIndices';
 
 const MarketQuotes = () => {
   const containerRef = useRef(null);
   const scriptLoaded = useRef(false);
+  const { colorTheme } = useTheme();
 
   useEffect(() => {
     const loadWidget = () => {
@@ -34,65 +36,37 @@ const MarketQuotes = () => {
         };
         
         script.innerHTML = JSON.stringify({
-          "colorTheme": "dark",
-          "locale": "br",
-          "largeChartUrl": "",
-          "isTransparent": false,
-          "showSymbolLogo": true,
-          "backgroundColor": "#0F0F0F",
-          "support_host": "https://www.tradingview.com",
           "width": "100%",
-          "height": 250,
-          "gridLineColor": "#2A2E39",
-          "fontColor": "#787B86",
-          "underLineColor": "#E3F2FD",
-          "trendLineColor": "#4CAF50",
-          "activeTickerBackgroundColor": "#131722",
-          "columns": ["name", "change_percent", "last", "change"],
+          "height": "100%",
           "symbolsGroups": [
             {
-              "name": "Principal",
+              "name": "Indices",
+              "originalName": "Indices",
               "symbols": [
-                {
-                  "name": "CAPITALCOM:ESU2025",
-                  "displayName": "S&P 500"
-                },
-                {
-                  "name": "ACTIVTRADES:USATECU2025",
-                  "displayName": "NASDAQ"
-                },
-                {
-                  "name": "ACTIVTRADES:USAINDU2025",
-                  "displayName": "DOW JONES"
-                },
-                {
-                  "name": "ACTIVTRADES:BRA50V2025",
-                  "displayName": "IBOV"
-                },
-                {
-                  "name": "CME:IPC1!",
-                  "displayName": "FD"
-                }
+                { "name": "FOREXCOM:SPXUSD", "displayName": "S&P 500" },
+                { "name": "FOREXCOM:NSXUSD", "displayName": "US 100" },
+                { "name": "FOREXCOM:DJI", "displayName": "Dow 30" },
+                { "name": "INDEX:NKY", "displayName": "Nikkei 225" },
+                { "name": "INDEX:DEU40", "displayName": "DAX Index" },
+                { "name": "FOREXCOM:UKXGBP", "displayName": "FTSE 100" }
               ]
             }
-          ]
+          ],
+          "showSymbolLogo": true,
+          "isTransparent": false,
+          "colorTheme": colorTheme,
+          "locale": "br"
         });
         
         containerRef.current.appendChild(script);
-        
-        // Adicionar copyright
-        // const copyrightDiv = document.createElement('div');
-        // copyrightDiv.className = 'tradingview-widget-copyright';
-        // copyrightDiv.innerHTML = '<a href="https://br.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a>';
-        // containerRef.current.appendChild(copyrightDiv);
         
       } catch (error) {
         console.warn('Erro ao criar widget de market quotes:', error);
       }
     };
 
-    // Delay para evitar conflitos com outros widgets
-    const timeoutId = setTimeout(loadWidget, 300);
+    // Delay para evitar conflitos
+    const timeoutId = setTimeout(loadWidget, 100);
 
     // Cleanup function
     return () => {
@@ -102,7 +76,7 @@ const MarketQuotes = () => {
         containerRef.current.innerHTML = '';
       }
     };
-  }, []);
+  }, [colorTheme]); // Recarregar quando o tema mudar
 
   return (
     <ContainerIndices title="Principal">
@@ -110,10 +84,9 @@ const MarketQuotes = () => {
         className="tradingview-widget-container"
         ref={containerRef}
         style={{ 
-          minHeight: '400px', 
+          minHeight: '250px', 
           width: '100%',
-          position: 'relative',
-          overflow: 'hidden'
+          position: 'relative'
         }}
       >
         <div className="d-flex align-items-center justify-content-center h-100">
@@ -121,7 +94,7 @@ const MarketQuotes = () => {
             <div className="spinner-border text-warning mb-2" role="status" style={{width: '1.5rem', height: '1.5rem'}}>
               <span className="visually-hidden">Carregando...</span>
             </div>
-            <p className="text-muted small">Carregando Índices...</p>
+            <p className="text-muted small">Carregando cotações...</p>
           </div>
         </div>
       </div>

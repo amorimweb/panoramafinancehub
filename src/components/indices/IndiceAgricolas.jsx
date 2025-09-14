@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, memo } from 'react';
 import ContainerIndices from './ContainerIndices';
+import { useTheme } from '../../contexts/ThemeContext';
 
 const IndiceAgricolas = () => {
   const containerRef = useRef(null);
   const scriptLoaded = useRef(false);
+  const { colorTheme } = useTheme();
 
   useEffect(() => {
     const loadWidget = () => {
@@ -34,69 +36,37 @@ const IndiceAgricolas = () => {
         };
         
         script.innerHTML = JSON.stringify({
-          "colorTheme": "dark",
-          "locale": "br",
-          "largeChartUrl": "",
-          "isTransparent": false,
-          "showSymbolLogo": true,
-          "backgroundColor": "#0F0F0F",
-          "support_host": "https://www.tradingview.com",
           "width": "100%",
-          "height": 250,
-          "gridLineColor": "#2A2E39",
-          "fontColor": "#787B86",
-          "underLineColor": "#E3F2FD",
-          "trendLineColor": "#4CAF50",
-          "activeTickerBackgroundColor": "#131722",
-          "columns": ["name", "change_percent", "last", "change"],
+          "height": "100%",
           "symbolsGroups": [
             {
               "name": "Agrícolas",
+              "originalName": "Agrícolas",
               "symbols": [
-                {
-                  "name": "CAPITALCOM:WHEAT",
-                  "displayName": "Trigo"
-                },
-                {
-                  "name": "IG:S",
-                  "displayName": "Soja"
-                },
-                {
-                  "name": "CAPITALCOM:CORN",
-                  "displayName": "Milho"
-                },
-                {
-                  "name": "NYSE:SMG",
-                  "displayName": "Farelo de Milho"
-                },
-                {
-                  "name": "CAPITALCOM:SOYBEANOIL",
-                  "displayName": "Oleo de Soja"
-                },
-                {
-                  "name": "EIGHTCAP:COFFEE",
-                  "displayName": "Café (Arábica)"
-                }
+                { "name": "CAPITALCOM:WHEAT", "displayName": "Trigo" },
+                { "name": "CAPITALCOM:SOYBEAN", "displayName": "Soja" },
+                { "name": "CAPITALCOM:CORN", "displayName": "Milho" },
+                { "name": "CAPITALCOM:SOYBEANOIL", "displayName": "Óleo de Soja" },
+                { "name": "CAPITALCOM:COFFEE", "displayName": "Café" },
+                { "name": "CAPITALCOM:SUGAR", "displayName": "Açúcar" }
               ]
             }
-          ]
+          ],
+          "showSymbolLogo": true,
+          "isTransparent": false,
+          "colorTheme": colorTheme,
+          "locale": "br"
         });
         
         containerRef.current.appendChild(script);
-        
-        // // Adicionar copyright
-        // const copyrightDiv = document.createElement('div');
-        // copyrightDiv.className = 'tradingview-widget-copyright';
-        // copyrightDiv.innerHTML = '<a href="https://br.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a>';
-        // containerRef.current.appendChild(copyrightDiv);
         
       } catch (error) {
         console.warn('Erro ao criar widget de commodities agrícolas:', error);
       }
     };
 
-    // Delay para evitar conflitos com outros widgets
-    const timeoutId = setTimeout(loadWidget, 900);
+    // Delay para evitar conflitos
+    const timeoutId = setTimeout(loadWidget, 100);
 
     // Cleanup function
     return () => {
@@ -106,7 +76,7 @@ const IndiceAgricolas = () => {
         containerRef.current.innerHTML = '';
       }
     };
-  }, []);
+  }, [colorTheme]); // Recarregar quando o tema mudar
 
   return (
     <ContainerIndices title="Agrícolas">
@@ -114,10 +84,9 @@ const IndiceAgricolas = () => {
         className="tradingview-widget-container"
         ref={containerRef}
         style={{ 
-          minHeight: '400px', 
+          minHeight: '250px', 
           width: '100%',
-          position: 'relative',
-          overflow: 'hidden'
+          position: 'relative'
         }}
       >
         <div className="d-flex align-items-center justify-content-center h-100">

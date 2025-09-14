@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, memo } from 'react';
 import ContainerIndices from './ContainerIndices';
+import { useTheme } from '../../contexts/ThemeContext';
 
 const IndiceNasdaq = () => {
   const containerRef = useRef(null);
   const scriptLoaded = useRef(false);
+  const { colorTheme } = useTheme();
 
   useEffect(() => {
     const loadWidget = () => {
@@ -25,90 +27,46 @@ const IndiceNasdaq = () => {
         script.async = true;
         
         script.onload = () => {
-          console.log('IndiceNasdaq widget carregado com sucesso');
+          console.log('Nasdaq widget carregado com sucesso');
           scriptLoaded.current = true;
         };
         
         script.onerror = (error) => {
-          console.warn('Erro ao carregar widget de ações do NASDAQ:', error);
+          console.warn('Erro ao carregar widget de nasdaq:', error);
         };
         
         script.innerHTML = JSON.stringify({
-          "colorTheme": "dark",
-          "locale": "br",
-          "largeChartUrl": "",
-          "isTransparent": false,
-          "showSymbolLogo": true,
-          "backgroundColor": "#0F0F0F",
-          "support_host": "https://www.tradingview.com",
           "width": "100%",
-          "height": 250,
-          "gridLineColor": "#2A2E39",
-          "fontColor": "#787B86",
-          "underLineColor": "#E3F2FD",
-          "trendLineColor": "#4CAF50",
-          "activeTickerBackgroundColor": "#131722",
-          "columns": ["name", "change_percent", "last", "change"],
+          "height": "100%",
           "symbolsGroups": [
             {
               "name": "NASDAQ",
+              "originalName": "NASDAQ",
               "symbols": [
-                {
-                  "name": "NASDAQ:AAPL",
-                  "displayName": "AAPL"
-                },
-                {
-                  "name": "NASDAQ:MSFT",
-                  "displayName": "MSFT"
-                },
-                {
-                  "name": "NASDAQ:NVDA",
-                  "displayName": "NVDA"
-                },
-                {
-                  "name": "NASDAQ:AMZN",
-                  "displayName": "AMZN"
-                },
-                {
-                  "name": "NASDAQ:META",
-                  "displayName": "META"
-                },
-                {
-                  "name": "NASDAQ:GOOG",
-                  "displayName": "GOOG"
-                },
-                {
-                  "name": "NASDAQ:TSLA",
-                  "displayName": "TSLA"
-                },
-                {
-                  "name": "NASDAQ:INTC",
-                  "displayName": "INTC"
-                },
-                {
-                  "name": "NASDAQ:AMD",
-                  "displayName": "AMD"
-                }
+                { "name": "NASDAQ:AAPL", "displayName": "Apple" },
+                { "name": "NASDAQ:MSFT", "displayName": "Microsoft" },
+                { "name": "NASDAQ:GOOGL", "displayName": "Google" },
+                { "name": "NASDAQ:AMZN", "displayName": "Amazon" },
+                { "name": "NASDAQ:TSLA", "displayName": "Tesla" },
+                { "name": "NASDAQ:META", "displayName": "Meta" }
               ]
             }
-          ]
+          ],
+          "showSymbolLogo": true,
+          "isTransparent": false,
+          "colorTheme": colorTheme,
+          "locale": "br"
         });
         
         containerRef.current.appendChild(script);
         
-        // Adicionar copyright
-        // const copyrightDiv = document.createElement('div');
-        // copyrightDiv.className = 'tradingview-widget-copyright';
-        // copyrightDiv.innerHTML = '<a href="https://br.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a>';
-        // containerRef.current.appendChild(copyrightDiv);
-        
       } catch (error) {
-        console.warn('Erro ao criar widget de ações do NASDAQ:', error);
+        console.warn('Erro ao criar widget de nasdaq:', error);
       }
     };
 
-    // Delay para evitar conflitos com outros widgets
-    const timeoutId = setTimeout(loadWidget, 1500);
+    // Delay para evitar conflitos
+    const timeoutId = setTimeout(loadWidget, 100);
 
     // Cleanup function
     return () => {
@@ -118,7 +76,7 @@ const IndiceNasdaq = () => {
         containerRef.current.innerHTML = '';
       }
     };
-  }, []);
+  }, [colorTheme]); // Recarregar quando o tema mudar
 
   return (
     <ContainerIndices title="NASDAQ">

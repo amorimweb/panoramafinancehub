@@ -1,27 +1,30 @@
 import React from 'react';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
+import { useTheme } from '../contexts/ThemeContext';
 
 const Header = () => {
   const location = useLocation();
+  const { isDarkMode, toggleTheme, colors } = useTheme();
   
   return (
     <Navbar 
       expand="lg" 
       className="px-2 px-md-4 py-3 py-md-4 shadow-2xl"
       style={{ 
-        background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%)',
+        background: colors.background,
         backdropFilter: 'blur(20px)',
-        borderBottom: '1px solid rgba(249, 115, 22, 0.3)',
+        borderBottom: `1px solid ${colors.border}`,
         boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), 0 0 50px rgba(249, 115, 22, 0.1)',
         position: 'relative',
-        zIndex: 1000
+        zIndex: 1000,
+        transition: 'all 0.3s ease'
       }}
     >
       <Container fluid>
         {/* Logo e Brand */}
         <Navbar.Brand as={Link} to="/" className="d-flex align-items-center responsive-brand">
-                      <div className="d-flex align-items-center responsive-logo-container">
+          <div className="d-flex align-items-center responsive-logo-container">
             <div 
               className="rounded-4 d-flex align-items-center justify-content-center me-4 shadow-2xl" 
               style={{
@@ -56,20 +59,17 @@ const Header = () => {
               ></div>
             </div>
             <div>
-              <h3 className="text-white mb-0 fw-bold header-title" style={{ letterSpacing: '-0.5px' }}>
-                PANORAMA<span style={{ color: '#f97316', textShadow: '0 0 10px rgba(249, 115, 22, 0.5)' }}>FINANCE</span>
+              <h3 className="mb-0 fw-bold header-title" style={{ 
+                letterSpacing: '-0.5px',
+                color: colors.text
+              }}>
+                PANORAMA<span style={{ 
+                  color: '#f97316', 
+                  textShadow: isDarkMode 
+                    ? '0 0 10px rgba(249, 115, 22, 0.5)' 
+                    : '0 2px 4px rgba(249, 115, 22, 0.3)'
+                }}>FINANCE</span>
               </h3>
-              {/* <small 
-                className="text-muted fw-medium" 
-                style={{ 
-                  color: 'rgba(156, 163, 175, 0.8)',
-                  letterSpacing: '0.5px',
-                  textTransform: 'uppercase',
-                  fontSize: '11px'
-                }}
-              >
-                Professional Trading Hub
-              </small> */}
             </div>
           </div>
         </Navbar.Brand>
@@ -78,18 +78,48 @@ const Header = () => {
         <Navbar.Toggle 
           aria-controls="navbar-nav" 
           style={{
-            borderColor: 'rgba(249, 115, 22, 0.3)',
+            borderColor: colors.border,
             padding: '0.375rem 0.5rem'
           }}
         />
 
         <Navbar.Collapse id="navbar-nav">
           {/* Navigation Menu - Home, Cursos e Perfil */}
-          <Nav className="ms-auto d-flex align-items-center responsive-nav">
-          <Link to="/">
+          <Nav className="ms-auto d-flex align-items-center responsive-nav gap-2">
+            {/* Botão de alternância de tema */}
+            <Button
+              onClick={toggleTheme}
+              variant="outline-light"
+              className="px-3 py-2 d-flex align-items-center mb-2 mb-lg-0"
+              style={{
+                borderColor: colors.border,
+                color: colors.accent,
+                background: 'rgba(249, 115, 22, 0.1)',
+                borderRadius: '12px',
+                transition: 'all 0.3s ease',
+                fontSize: '14px',
+                minWidth: 'auto'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.background = 'rgba(249, 115, 22, 0.2)';
+                e.target.style.transform = 'scale(1.05)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.background = 'rgba(249, 115, 22, 0.1)';
+                e.target.style.transform = 'scale(1)';
+              }}
+              title={isDarkMode ? 'Alternar para modo claro' : 'Alternar para modo escuro'}
+            >
+              {isDarkMode ? '☀️' : '🌙'} 
+              <span className="ms-1 d-none d-md-inline">
+                {isDarkMode ? 'Claro' : 'Escuro'}
+              </span>
+            </Button>
+
+          <Link to="/" className="text-decoration-none">
             <Button
               variant="outline-light"
-              className="me-3 px-4 py-3 fw-bold"
+              className="px-4 py-3 fw-bold mb-2 mb-lg-0 w-100"
               style={{
                 borderColor: location.pathname === '/' ? 'rgba(249, 115, 22, 0.8)' : 'rgba(249, 115, 22, 0.6)',
                 color: location.pathname === '/' ? 'white' : '#f97316',
@@ -100,7 +130,8 @@ const Header = () => {
                 textTransform: 'uppercase',
                 letterSpacing: '1px',
                 fontSize: '13px',
-                boxShadow: location.pathname === '/' ? '0 12px 30px rgba(249, 115, 22, 0.4)' : '0 4px 15px rgba(249, 115, 22, 0.1)'
+                boxShadow: location.pathname === '/' ? '0 12px 30px rgba(249, 115, 22, 0.4)' : '0 4px 15px rgba(249, 115, 22, 0.1)',
+                minHeight: '48px'
               }}
               onMouseEnter={(e) => {
                 if (location.pathname !== '/') {
@@ -124,10 +155,10 @@ const Header = () => {
               ⌂ HOME
             </Button>
           </Link>
-          <Link to="/cursos">
+          <Link to="/cursos" className="text-decoration-none">
             <Button
               variant="outline-light"
-              className="me-4 px-5 py-3 fw-bold"
+              className="px-5 py-3 fw-bold mb-2 mb-lg-0 w-100"
               style={{
                 borderColor: location.pathname === '/cursos' ? 'rgba(249, 115, 22, 0.8)' : 'rgba(249, 115, 22, 0.6)',
                 color: location.pathname === '/cursos' ? 'white' : '#f97316',
@@ -138,7 +169,8 @@ const Header = () => {
                 textTransform: 'uppercase',
                 letterSpacing: '1px',
                 fontSize: '13px',
-                boxShadow: location.pathname === '/cursos' ? '0 12px 30px rgba(249, 115, 22, 0.4)' : '0 4px 15px rgba(249, 115, 22, 0.1)'
+                boxShadow: location.pathname === '/cursos' ? '0 12px 30px rgba(249, 115, 22, 0.4)' : '0 4px 15px rgba(249, 115, 22, 0.1)',
+                minHeight: '48px'
               }}
               onMouseEnter={(e) => {
                 if (location.pathname !== '/cursos') {
@@ -164,10 +196,10 @@ const Header = () => {
           </Link>
           
           {/* User Profile */}
-          <Link to="/perfil">
+          <Link to="/perfil" className="text-decoration-none">
             <Button
               variant="outline-light"
-              className="d-flex align-items-center px-4 py-3 fw-bold"
+              className="d-flex align-items-center justify-content-center px-4 py-3 fw-bold mb-2 mb-lg-0 w-100"
               style={{
                 borderColor: location.pathname === '/perfil' ? 'rgba(249, 115, 22, 0.8)' : 'rgba(249, 115, 22, 0.6)',
                 color: location.pathname === '/perfil' ? 'white' : '#f97316',
@@ -178,7 +210,8 @@ const Header = () => {
                 textTransform: 'uppercase',
                 letterSpacing: '1px',
                 fontSize: '13px',
-                boxShadow: location.pathname === '/perfil' ? '0 12px 30px rgba(249, 115, 22, 0.4)' : '0 4px 15px rgba(249, 115, 22, 0.1)'
+                boxShadow: location.pathname === '/perfil' ? '0 12px 30px rgba(249, 115, 22, 0.4)' : '0 4px 15px rgba(249, 115, 22, 0.1)',
+                minHeight: '48px'
               }}
               onMouseEnter={(e) => {
                 if (location.pathname !== '/perfil') {
@@ -199,7 +232,7 @@ const Header = () => {
                 }
               }}
             >
-                                             ◦ PERFIL
+              ◦ PERFIL
            </Button>
           </Link>
         </Nav>

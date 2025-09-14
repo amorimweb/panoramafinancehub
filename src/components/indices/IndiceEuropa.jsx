@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, memo } from 'react';
 import ContainerIndices from './ContainerIndices';
+import { useTheme } from '../../contexts/ThemeContext';
 
 const IndiceEuropa = () => {
   const containerRef = useRef(null);
   const scriptLoaded = useRef(false);
+  const { colorTheme } = useTheme();
 
   useEffect(() => {
     const loadWidget = () => {
@@ -34,69 +36,37 @@ const IndiceEuropa = () => {
         };
         
         script.innerHTML = JSON.stringify({
-          "colorTheme": "dark",
-          "locale": "br",
-          "largeChartUrl": "",
-          "isTransparent": false,
-          "showSymbolLogo": true,
-          "backgroundColor": "#0F0F0F",
-          "support_host": "https://www.tradingview.com",
           "width": "100%",
-          "height": 250,
-          "gridLineColor": "#2A2E39",
-          "fontColor": "#787B86",
-          "underLineColor": "#E3F2FD",
-          "trendLineColor": "#4CAF50",
-          "activeTickerBackgroundColor": "#131722",
-          "columns": ["name", "change_percent", "last", "change"],
+          "height": "100%",
           "symbolsGroups": [
             {
               "name": "Europa",
+              "originalName": "Europa",
               "symbols": [
-                {
-                  "name": "ACTIVTRADES:EURO50",
-                  "displayName": "Euro Stoxx 50"
-                },
-                {
-                  "name": "IG:FTSE",
-                  "displayName": "FTSE 100"
-                },
-                {
-                  "name": "BOATS:DAX",
-                  "displayName": "DAX"
-                },
-                {
-                  "name": "INDEX:CAC40",
-                  "displayName": "CAC40"
-                },
-                {
-                  "name": "PHILLIPNOVA:IBEX35",
-                  "displayName": "IBEX35"
-                },
-                {
-                  "name": "INDEX:FTSEMIB",
-                  "displayName": "FTSE MIB"
-                }
+                { "name": "INDEX:SX5E", "displayName": "Euro Stoxx 50" },
+                { "name": "INDEX:UKX", "displayName": "FTSE 100" },
+                { "name": "INDEX:DAX", "displayName": "DAX" },
+                { "name": "INDEX:CAC", "displayName": "CAC 40" },
+                { "name": "INDEX:IBEX35", "displayName": "IBEX 35" },
+                { "name": "INDEX:FTSEMIB", "displayName": "FTSE MIB" }
               ]
             }
-          ]
+          ],
+          "showSymbolLogo": true,
+          "isTransparent": false,
+          "colorTheme": colorTheme,
+          "locale": "br"
         });
         
         containerRef.current.appendChild(script);
-        
-        // // Adicionar copyright
-        // const copyrightDiv = document.createElement('div');
-        // copyrightDiv.className = 'tradingview-widget-copyright';
-        // copyrightDiv.innerHTML = '<a href="https://br.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a>';
-        // containerRef.current.appendChild(copyrightDiv);
         
       } catch (error) {
         console.warn('Erro ao criar widget de índices europeus:', error);
       }
     };
 
-    // Delay para evitar conflitos com outros widgets
-    const timeoutId = setTimeout(loadWidget, 500);
+    // Delay para evitar conflitos
+    const timeoutId = setTimeout(loadWidget, 100);
 
     // Cleanup function
     return () => {
@@ -106,7 +76,7 @@ const IndiceEuropa = () => {
         containerRef.current.innerHTML = '';
       }
     };
-  }, []);
+  }, [colorTheme]); // Recarregar quando o tema mudar
 
   return (
     <ContainerIndices title="Europa">
@@ -114,10 +84,9 @@ const IndiceEuropa = () => {
         className="tradingview-widget-container"
         ref={containerRef}
         style={{ 
-          minHeight: '400px', 
+          minHeight: '250px', 
           width: '100%',
-          position: 'relative',
-          overflow: 'hidden'
+          position: 'relative'
         }}
       >
         <div className="d-flex align-items-center justify-content-center h-100">

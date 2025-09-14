@@ -564,3 +564,284 @@ h1, h2, h3, h4, h5, h6 {
       radial-gradient(circle at 50% 80%, rgba(234, 88, 12, 0.08) 0%, transparent 60%);
   }
 }
+
+/* Theme Support Styles */
+.bg-gradient-dark {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
+}
+
+.bg-gradient-light {
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.95) 0%, rgba(241, 245, 249, 0.9) 100%);
+}
+
+/* Global theme classes for body */
+body.dark-theme {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
+  color: #ffffff;
+}
+
+body.light-theme {
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.95) 0%, rgba(241, 245, 249, 0.9) 100%);
+  color: #1e293b;
+}
+
+/* Card theme support */
+.card-dark {
+  background-color: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-light {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(249, 115, 22, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* TradingView widget theme transitions */
+.tradingview-widget-container {
+  transition: all 0.3s ease;
+}
+
+/* Header theme support */
+.header-dark {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
+  border-bottom: 1px solid rgba(249, 115, 22, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.header-light {
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.95) 0%, rgba(241, 245, 249, 0.9) 100%);
+  border-bottom: 1px solid rgba(249, 115, 22, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Theme toggle button animation */
+.theme-toggle-btn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
+}
+
+/* Text colors for light mode */
+.light-theme .text-white {
+  color: #1e293b !important;
+}
+
+.light-theme .text-muted {
+  color: #64748b !important;
+}
+
+/* Spinner colors for light mode */
+.light-theme .spinner-border.text-warning {
+  border-color: rgba(249, 115, 22, 0.2);
+  border-top-color: #f97316;
+}
+
+/* Badge adjustments for light mode */
+.light-theme .badge {
+  color: #1e293b;
+  background-color: rgba(249, 115, 22, 0.1) !important;
+  border-color: rgba(249, 115, 22, 0.2) !important;
+}
+
+/* Shimmer animation for logo */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Responsive design for theme toggle */
+@media (max-width: 768px) {
+  .theme-toggle-btn .d-none.d-md-inline {
+    display: none !important;
+  }
+}
+
+/* Mobile header improvements */
+@media (max-width: 991.98px) {
+  .responsive-nav {
+    flex-direction: column;
+    align-items: stretch !important;
+    width: 100%;
+    padding-top: 1rem;
+  }
+  
+  .responsive-nav .btn {
+    margin-bottom: 0.5rem !important;
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  
+  .responsive-nav a {
+    width: 100%;
+  }
+  
+  .responsive-brand {
+    margin-bottom: 0.5rem;
+  }
+  
+  .responsive-logo-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .header-title {
+    font-size: 1.5rem !important;
+  }
+}
+
+/* Ensure proper spacing between nav items */
+.responsive-nav.gap-2 > * {
+  margin-bottom: 0.5rem;
+}
+
+.responsive-nav.gap-2 > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Mobile navbar collapse improvements */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(249, 115, 22, 0.2);
+  }
+  
+  .navbar-toggler {
+    border-color: rgba(249, 115, 22, 0.3) !important;
+    padding: 0.5rem !important;
+  }
+  
+  .navbar-toggler:focus {
+    box-shadow: 0 0 0 0.2rem rgba(249, 115, 22, 0.25) !important;
+  }
+}
+
+/* Loading spinner theme support */
+.spinner-border.text-warning {
+  border-color: rgba(249, 115, 22, 0.3);
+  border-top-color: #f97316;
+}
+
+/* Smooth transitions for all theme changes */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Ensure TradingView widgets don't interfere with theme transitions */
+.tradingview-widget-container iframe {
+  transition: none !important;
+}
+
+/* Hero Section theme support */
+.light-theme .hero-title {
+  color: #1e293b !important;
+}
+
+.light-theme .hero-subtitle {
+  color: #64748b !important;
+}
+
+/* Section headers for light mode */
+.light-theme h2 {
+  color: #1e293b !important;
+}
+
+.light-theme .fw-bold {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Navigation buttons theme support */
+.light-theme .btn {
+  background: rgba(249, 115, 22, 0.08) !important;
+  border-color: rgba(249, 115, 22, 0.2) !important;
+  color: #f97316 !important;
+}
+
+.light-theme .btn:hover {
+  background: rgba(249, 115, 22, 0.15) !important;
+  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.2) !important;
+}
+
+/* Badge improvements for light mode */
+.light-theme .badge {
+  background: rgba(249, 115, 22, 0.1) !important;
+  border-color: rgba(249, 115, 22, 0.2) !important;
+  box-shadow: 0 2px 8px rgba(249, 115, 22, 0.1) !important;
+}
+
+/* Icon containers for light mode */
+.light-theme .rounded-4,
+.light-theme .rounded-circle {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Gradient divider for light mode */
+.light-theme .mx-auto {
+  box-shadow: 0 0 8px rgba(249, 115, 22, 0.2) !important;
+}
+
+/* Scroll to top button for light mode */
+.light-theme .position-fixed.btn {
+  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.2) !important;
+  border-color: rgba(249, 115, 22, 0.3) !important;
+}
+
+/* Improve text contrast in light mode */
+.light-theme p {
+  color: #64748b !important;
+}
+
+.light-theme small {
+  color: #64748b !important;
+}
+
+/* Section spacing and background for light mode */
+.light-theme .main-container {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px);
+}
+
+/* Improve visibility of icons in light mode */
+.light-theme .rounded-4 span,
+.light-theme .rounded-circle span {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+/* Hero description responsive size */
+.hero-description {
+  font-size: 1.25rem; /* ~20px desktop padrão equivalente a fs-5 */
+}
+
+@media (max-width: 575.98px) {
+  .hero-description {
+    font-size: 0.95rem; /* ~15px em mobiles muito pequenos */
+    line-height: 1.5;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .hero-description {
+    font-size: 1.05rem; /* ~16.8px em celulares médios */
+    line-height: 1.55;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .hero-description {
+    font-size: 1.125rem; /* ~18px em tablets */
+    line-height: 1.6;
+  }
+}

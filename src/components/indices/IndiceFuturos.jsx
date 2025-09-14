@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, memo } from 'react';
 import ContainerIndices from './ContainerIndices';
+import { useTheme } from '../../contexts/ThemeContext';
 
 const IndiceFuturos = () => {
   const containerRef = useRef(null);
   const scriptLoaded = useRef(false);
+  const { colorTheme } = useTheme();
 
   useEffect(() => {
     const loadWidget = () => {
@@ -34,81 +36,37 @@ const IndiceFuturos = () => {
         };
         
         script.innerHTML = JSON.stringify({
-          "colorTheme": "dark",
-          "locale": "br",
-          "largeChartUrl": "",
-          "isTransparent": false,
-          "showSymbolLogo": true,
-          "backgroundColor": "#0F0F0F",
-          "support_host": "https://www.tradingview.com",
           "width": "100%",
-          "height": 250,
-          "gridLineColor": "#2A2E39",
-          "fontColor": "#787B86",
-          "underLineColor": "#E3F2FD",
-          "trendLineColor": "#4CAF50",
-          "activeTickerBackgroundColor": "#131722",
-          "columns": ["name", "change_percent", "last", "change"],
+          "height": "100%",
           "symbolsGroups": [
             {
               "name": "Futuros",
+              "originalName": "Futuros",
               "symbols": [
-                {
-                  "name": "BMFBOVESPA:IBOV",
-                  "displayName": "Ibovespa"
-                },
-                {
-                  "name": "BLUEBERRY:SP500",
-                  "displayName": "S&P 500"
-                },
-                {
-                  "name": "IG:NASDAQ",
-                  "displayName": "Nasdaq"
-                },
-                {
-                  "name": "ACTIVTRADES:EURO50",
-                  "displayName": "Euro Stoxx 50"
-                },
-                {
-                  "name": "IG:FTSE",
-                  "displayName": "FTSE 100"
-                },
-                {
-                  "name": "IG:DAX",
-                  "displayName": "DAX"
-                },
-                {
-                  "name": "VANTAGE:NIKKEI225",
-                  "displayName": "Nikkei 225"
-                },
-                {
-                  "name": "FOREXCOM:CHINA50",
-                  "displayName": "ChinaA50"
-                },
-                {
-                  "name": "IG:ASX",
-                  "displayName": "S&P ASX 200"
-                }
+                { "name": "CME_MINI:ES1!", "displayName": "S&P 500 Fut" },
+                { "name": "CME_MINI:NQ1!", "displayName": "NASDAQ Fut" },
+                { "name": "CBOT_MINI:YM1!", "displayName": "Dow Jones Fut" },
+                { "name": "EUREX:FDAX1!", "displayName": "DAX Fut" },
+                { "name": "CME:6E1!", "displayName": "Euro Fut" },
+                { "name": "NYMEX:GC1!", "displayName": "Ouro Fut" }
               ]
             }
-          ]
+          ],
+          "showSymbolLogo": true,
+          "isTransparent": false,
+          "colorTheme": colorTheme,
+          "locale": "br"
         });
         
         containerRef.current.appendChild(script);
-        
-        // Adicionar copyright
-        // const copyrightDiv = document.createElement('div');
-        // copyrightDiv.className = 'tradingview-widget-copyright';
-        // copyrightDiv.innerHTML = '<a href="https://br.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a>';
-        // containerRef.current.appendChild(copyrightDiv);
         
       } catch (error) {
         console.warn('Erro ao criar widget de contratos futuros:', error);
       }
     };
 
-    // Delay para evitar conflitos com outros widgets
-    const timeoutId = setTimeout(loadWidget, 1300);
+    // Delay para evitar conflitos
+    const timeoutId = setTimeout(loadWidget, 100);
 
     // Cleanup function
     return () => {
@@ -118,7 +76,7 @@ const IndiceFuturos = () => {
         containerRef.current.innerHTML = '';
       }
     };
-  }, []);
+  }, [colorTheme]); // Recarregar quando o tema mudar
 
   return (
     <ContainerIndices title="Futuros">
@@ -126,10 +84,9 @@ const IndiceFuturos = () => {
         className="tradingview-widget-container"
         ref={containerRef}
         style={{ 
-          minHeight: '400px', 
+          minHeight: '250px', 
           width: '100%',
-          position: 'relative',
-          overflow: 'hidden'
+          position: 'relative'
         }}
       >
         <div className="d-flex align-items-center justify-content-center h-100">
