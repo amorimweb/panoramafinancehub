@@ -20,7 +20,7 @@ const Cursos = () => {
       alunos: 2847,
       descricao: "Domine as principais ferramentas de análise técnica e identifique oportunidades de trading com precisão.",
       imagem: "📈",
-      cor: "#f97316",
+      cor: "#64748b",
       destaque: true,
       aulas: 32,
       certificado: true,
@@ -39,7 +39,7 @@ const Cursos = () => {
       alunos: 4521,
       descricao: "Aprenda os conceitos fundamentais do mercado financeiro e comece sua jornada no trading.",
       imagem: "🎯",
-      cor: "#22c55e",
+      cor: "#6b7280",
       destaque: false,
       aulas: 24,
       certificado: true,
@@ -58,7 +58,7 @@ const Cursos = () => {
       alunos: 1923,
       descricao: "Estratégias profissionais para day trading com foco em resultados consistentes e gestão de risco.",
       imagem: "⚡",
-      cor: "#3b82f6",
+      cor: "#71717a",
       destaque: true,
       aulas: 45,
       certificado: true,
@@ -77,7 +77,7 @@ const Cursos = () => {
       alunos: 3156,
       descricao: "Avalie empresas através de análise fundamentalista e tome decisões de investimento sólidas.",
       imagem: "📊",
-      cor: "#8b5cf6",
+      cor: "#71717a",
       destaque: false,
       aulas: 28,
       certificado: true,
@@ -96,7 +96,7 @@ const Cursos = () => {
       alunos: 2689,
       descricao: "Desenvolva disciplina mental e aprenda a gerenciar riscos como um trader profissional.",
       imagem: "🧠",
-      cor: "#ef4444",
+      cor: "#78716c",
       destaque: false,
       aulas: 20,
       certificado: true,
@@ -115,7 +115,7 @@ const Cursos = () => {
       alunos: 1834,
       descricao: "Explore o universo das criptomoedas e finanças descentralizadas com estratégias práticas.",
       imagem: "₿",
-      cor: "#f59e0b",
+      cor: "#6b7280",
       destaque: true,
       aulas: 26,
       certificado: true,
@@ -134,7 +134,7 @@ const Cursos = () => {
       alunos: 1456,
       descricao: "Domine estratégias avançadas com opções e outros derivativos para maximizar seus retornos.",
       imagem: "📋",
-      cor: "#06b6d4",
+      cor: "#64748b",
       destaque: false,
       aulas: 38,
       certificado: true,
@@ -153,7 +153,7 @@ const Cursos = () => {
       alunos: 892,
       descricao: "Desenvolva e implemente estratégias de trading automatizado com Python e machine learning.",
       imagem: "🤖",
-      cor: "#10b981",
+      cor: "#6b7280",
       destaque: true,
       aulas: 52,
       certificado: true,
@@ -172,7 +172,7 @@ const Cursos = () => {
       alunos: 2134,
       descricao: "Aprenda a negociar commodities como ouro, petróleo, soja e outros ativos físicos.",
       imagem: "🌾",
-      cor: "#84cc16",
+      cor: "#78716c",
       destaque: false,
       aulas: 24,
       certificado: true,
@@ -192,9 +192,9 @@ const Cursos = () => {
 
   const getNivelBadge = (nivel) => {
     const cores = {
-      'Iniciante': '#22c55e',
-      'Intermediário': '#3b82f6',
-      'Avançado': '#ef4444'
+      'Iniciante': '#64748b',
+      'Intermediário': '#6b7280',
+      'Avançado': '#71717a'
     };
     return cores[nivel] || '#6b7280';
   };
@@ -260,7 +260,7 @@ const Cursos = () => {
                       <div className="spinner-border text-warning mb-2" role="status" style={{width: '2rem', height: '2rem'}}>
                         <span className="visually-hidden">Carregando...</span>
                       </div>
-                      <p className="text-muted">Carregando cursos...</p>
+                      <p className="text-light" style={{ opacity: '0.8' }}>Carregando cursos...</p>
                     </div>
                   </Card.Body>
                 </Card>
@@ -387,7 +387,7 @@ const Cursos = () => {
                         <h6 className="text-white mb-0 fw-bold" style={{ fontSize: '14px' }}>
                           {curso.titulo}
                         </h6>
-                        <small className="text-muted" style={{ fontSize: '11px' }}>
+                        <small className="text-light" style={{ fontSize: '11px', opacity: '0.8' }}>
                           por {curso.instrutor}
                         </small>
                       </div>
@@ -410,11 +410,12 @@ const Cursos = () => {
                 <Card.Body className="px-4 py-3">
                   {/* Descrição */}
                   <p 
-                    className="text-muted mb-3"
+                    className="text-light mb-3"
                     style={{ 
                       fontSize: '13px', 
                       lineHeight: '1.4',
-                      minHeight: '40px'
+                      minHeight: '40px',
+                      opacity: '0.9'
                     }}
                   >
                     {curso.descricao}
@@ -426,7 +427,7 @@ const Cursos = () => {
                       <Col xs={6}>
                         <div className="d-flex align-items-center">
                           <span className="me-2" style={{ fontSize: '12px' }}>⏱️</span>
-                          <small className="text-muted" style={{ fontSize: '11px' }}>
+                          <small className="text-light" style={{ fontSize: '11px', opacity: '0.8' }}>
                             {curso.duracao}
                           </small>
                         </div>
@@ -434,7 +435,7 @@ const Cursos = () => {
                       <Col xs={6}>
                         <div className="d-flex align-items-center">
                           <span className="me-2" style={{ fontSize: '12px' }}>📚</span>
-                          <small className="text-muted" style={{ fontSize: '11px' }}>
+                          <small className="text-light" style={{ fontSize: '11px', opacity: '0.8' }}>
                             {curso.aulas} aulas
                           </small>
                         </div>
@@ -442,7 +443,7 @@ const Cursos = () => {
                       <Col xs={6}>
                         <div className="d-flex align-items-center">
                           <span className="me-2" style={{ fontSize: '12px' }}>⭐</span>
-                          <small className="text-muted" style={{ fontSize: '11px' }}>
+                          <small className="text-light" style={{ fontSize: '11px', opacity: '0.8' }}>
                             {curso.rating} ({curso.alunos} alunos)
                           </small>
                         </div>
@@ -450,7 +451,7 @@ const Cursos = () => {
                       <Col xs={6}>
                         <div className="d-flex align-items-center">
                           <span className="me-2" style={{ fontSize: '12px' }}>🏆</span>
-                          <small className="text-muted" style={{ fontSize: '11px' }}>
+                          <small className="text-light" style={{ fontSize: '11px', opacity: '0.8' }}>
                             {getCategoriaIcon(curso.categoria)} {curso.categoria}
                           </small>
                         </div>
@@ -507,8 +508,8 @@ const Cursos = () => {
                           {curso.preco}
                         </span>
                         <span 
-                          className="text-muted text-decoration-line-through ms-2"
-                          style={{ fontSize: '12px' }}
+                          className="text-light text-decoration-line-through ms-2"
+                          style={{ fontSize: '12px', opacity: '0.6' }}
                         >
                           {curso.precoOriginal}
                         </span>
@@ -567,13 +568,13 @@ const Cursos = () => {
                         className="fw-bold mb-1"
                         style={{ 
                           fontSize: '24px',
-                          color: '#f97316',
-                          textShadow: '0 0 10px rgba(249, 115, 22, 0.3)'
+                          color: '#e2e8f0',
+                          textShadow: '0 0 10px rgba(226, 232, 240, 0.2)'
                         }}
                       >
                         15.970+
                       </div>
-                      <small className="text-muted">Alunos Formados</small>
+                      <small className="text-light" style={{ opacity: '0.8' }}>Alunos Formados</small>
                     </div>
                   </Col>
                   <Col md={3} sm={6}>
@@ -582,13 +583,13 @@ const Cursos = () => {
                         className="fw-bold mb-1"
                         style={{ 
                           fontSize: '24px',
-                          color: '#22c55e',
-                          textShadow: '0 0 10px rgba(34, 197, 94, 0.3)'
+                          color: '#cbd5e1',
+                          textShadow: '0 0 10px rgba(203, 213, 225, 0.2)'
                         }}
                       >
                         98%
                       </div>
-                      <small className="text-muted">Taxa de Satisfação</small>
+                      <small className="text-light" style={{ opacity: '0.8' }}>Taxa de Satisfação</small>
                     </div>
                   </Col>
                   <Col md={3} sm={6}>
@@ -603,7 +604,7 @@ const Cursos = () => {
                       >
                         175+
                       </div>
-                      <small className="text-muted">Aulas Disponíveis</small>
+                      <small className="text-light" style={{ opacity: '0.8' }}>Aulas Disponíveis</small>
                     </div>
                   </Col>
                   <Col md={3} sm={6}>
@@ -618,7 +619,7 @@ const Cursos = () => {
                       >
                         24/7
                       </div>
-                      <small className="text-muted">Suporte Online</small>
+                      <small className="text-light" style={{ opacity: '0.8' }}>Suporte Online</small>
                     </div>
                   </Col>
                 </Row>

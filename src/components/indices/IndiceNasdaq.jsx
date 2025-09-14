@@ -48,7 +48,7 @@ const IndiceNasdaq = () => {
           "underLineColor": "#E3F2FD",
           "trendLineColor": "#4CAF50",
           "activeTickerBackgroundColor": "#131722",
-          "columns": ["name", "last", "change", "changePct"],
+          "columns": ["name", "change_percent", "last", "change"],
           "symbolsGroups": [
             {
               "name": "NASDAQ",

@@ -165,78 +165,42 @@ const Header = () => {
           
           {/* User Profile */}
           <Link to="/perfil">
-            <div 
-              className="d-flex align-items-center px-4 py-3 rounded-3 cursor-pointer"
+            <Button
+              variant="outline-light"
+              className="d-flex align-items-center px-4 py-3 fw-bold"
               style={{
-                background: location.pathname === '/perfil' ? 'linear-gradient(135deg, rgba(249, 115, 22, 0.3), rgba(234, 88, 12, 0.25))' : 'linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.1))',
-                backdropFilter: 'blur(15px)',
-                border: location.pathname === '/perfil' ? '1px solid rgba(249, 115, 22, 0.5)' : '1px solid rgba(249, 115, 22, 0.3)',
+                borderColor: location.pathname === '/perfil' ? 'rgba(249, 115, 22, 0.8)' : 'rgba(249, 115, 22, 0.6)',
+                color: location.pathname === '/perfil' ? 'white' : '#f97316',
                 transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                boxShadow: location.pathname === '/perfil' ? '0 8px 25px rgba(249, 115, 22, 0.3)' : '0 4px 15px rgba(249, 115, 22, 0.2)'
+                borderRadius: '12px',
+                background: location.pathname === '/perfil' ? 'linear-gradient(135deg, rgba(249, 115, 22, 0.9), rgba(234, 88, 12, 0.8))' : 'rgba(249, 115, 22, 0.1)',
+                backdropFilter: 'blur(10px)',
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                fontSize: '13px',
+                boxShadow: location.pathname === '/perfil' ? '0 12px 30px rgba(249, 115, 22, 0.4)' : '0 4px 15px rgba(249, 115, 22, 0.1)'
               }}
               onMouseEnter={(e) => {
                 if (location.pathname !== '/perfil') {
-                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(249, 115, 22, 0.3), rgba(234, 88, 12, 0.25))';
-                  e.currentTarget.style.transform = 'translateY(-3px)';
-                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(249, 115, 22, 0.3)';
-                  e.currentTarget.style.borderColor = 'rgba(249, 115, 22, 0.5)';
+                  e.target.style.background = 'linear-gradient(135deg, rgba(249, 115, 22, 0.9), rgba(234, 88, 12, 0.8))';
+                  e.target.style.color = 'white';
+                  e.target.style.transform = 'translateY(-3px)';
+                  e.target.style.boxShadow = '0 12px 30px rgba(249, 115, 22, 0.4)';
+                  e.target.style.borderColor = 'rgba(249, 115, 22, 0.8)';
                 }
               }}
               onMouseLeave={(e) => {
                 if (location.pathname !== '/perfil') {
-                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.1))';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 4px 15px rgba(249, 115, 22, 0.2)';
-                  e.currentTarget.style.borderColor = 'rgba(249, 115, 22, 0.3)';
+                  e.target.style.background = 'rgba(249, 115, 22, 0.1)';
+                  e.target.style.color = '#f97316';
+                  e.target.style.transform = 'translateY(0)';
+                  e.target.style.boxShadow = '0 4px 15px rgba(249, 115, 22, 0.2)';
+                  e.target.style.borderColor = 'rgba(249, 115, 22, 0.6)';
                 }
               }}
             >
-             <div 
-               className="rounded-circle d-flex align-items-center justify-content-center me-3" 
-               style={{
-                 width: '42px', 
-                 height: '42px',
-                 background: 'linear-gradient(135deg, rgba(249, 115, 22, 0.9) 0%, rgba(234, 88, 12, 0.9) 100%)',
-                 boxShadow: '0 6px 15px rgba(249, 115, 22, 0.4), 0 0 20px rgba(249, 115, 22, 0.2)',
-                 border: '2px solid rgba(249, 115, 22, 0.4)',
-                 position: 'relative',
-                 overflow: 'hidden'
-               }}
-             >
-               <span 
-                 className="text-white fw-bold" 
-                 style={{ 
-                   fontSize: '16px',
-                   textShadow: '0 0 10px rgba(255, 255, 255, 0.8)'
-                 }}
-               >
-                 💼
-               </span>
-             </div>
-             <div className="d-none d-md-block">
-               <div 
-                 className="text-white fw-bold small" 
-                 style={{ 
-                   textShadow: '0 0 10px rgba(16, 185, 129, 0.5)',
-                   fontSize: '13px',
-                   letterSpacing: '0.5px'
-                 }}
-               >
-                 Meu Perfil
-               </div>
-               {/* <div 
-                 className="text-muted fw-medium" 
-                 style={{ 
-                   fontSize: '8px',
-                  //  color: 'white',
-                   textTransform: 'uppercase',
-                   letterSpacing: '0.5px'
-                 }}
-               >
-                 Usário ativo
-               </div> */}
-             </div>
-           </div>
+              💼 Perfil
+           </Button>
           </Link>
         </Nav>
         </Navbar.Collapse>
