@@ -135,7 +135,7 @@ const Grafico = () => {
               fontSize: '20px'
             }}
           >
-            📈
+            ▲
           </div>
                      <div>
              <div style={{ fontSize: '1.8rem', letterSpacing: '-0.5px' }} className="text-white fw-bold">

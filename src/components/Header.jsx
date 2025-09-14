@@ -121,7 +121,7 @@ const Header = () => {
                 }
               }}
             >
-              🏠 Home
+              ⌂ HOME
             </Button>
           </Link>
           <Link to="/cursos">
@@ -159,7 +159,7 @@ const Header = () => {
                 }
               }}
             >
-              📚 Cursos
+              ◉ CURSOS
             </Button>
           </Link>
           
@@ -199,7 +199,7 @@ const Header = () => {
                 }
               }}
             >
-              💼 Perfil
+                                             ◦ PERFIL
            </Button>
           </Link>
         </Nav>

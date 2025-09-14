@@ -19,7 +19,7 @@ const Cursos = () => {
       rating: 4.9,
       alunos: 2847,
       descricao: "Domine as principais ferramentas de análise técnica e identifique oportunidades de trading com precisão.",
-      imagem: "📈",
+      imagem: "▲",
       cor: "#64748b",
       destaque: true,
       aulas: 32,
@@ -38,7 +38,7 @@ const Cursos = () => {
       rating: 4.8,
       alunos: 4521,
       descricao: "Aprenda os conceitos fundamentais do mercado financeiro e comece sua jornada no trading.",
-      imagem: "🎯",
+      imagem: "●",
       cor: "#6b7280",
       destaque: false,
       aulas: 24,
@@ -76,7 +76,7 @@ const Cursos = () => {
       rating: 4.7,
       alunos: 3156,
       descricao: "Avalie empresas através de análise fundamentalista e tome decisões de investimento sólidas.",
-      imagem: "📊",
+      imagem: "◢",
       cor: "#71717a",
       destaque: false,
       aulas: 28,
@@ -95,7 +95,7 @@ const Cursos = () => {
       rating: 4.8,
       alunos: 2689,
       descricao: "Desenvolva disciplina mental e aprenda a gerenciar riscos como um trader profissional.",
-      imagem: "🧠",
+      imagem: "◐",
       cor: "#78716c",
       destaque: false,
       aulas: 20,
@@ -114,7 +114,7 @@ const Cursos = () => {
       rating: 4.9,
       alunos: 1834,
       descricao: "Explore o universo das criptomoedas e finanças descentralizadas com estratégias práticas.",
-      imagem: "₿",
+      imagem: "◈",
       cor: "#6b7280",
       destaque: true,
       aulas: 26,
@@ -133,7 +133,7 @@ const Cursos = () => {
       rating: 4.8,
       alunos: 1456,
       descricao: "Domine estratégias avançadas com opções e outros derivativos para maximizar seus retornos.",
-      imagem: "📋",
+      imagem: "◇",
       cor: "#64748b",
       destaque: false,
       aulas: 38,
@@ -152,7 +152,7 @@ const Cursos = () => {
       rating: 4.9,
       alunos: 892,
       descricao: "Desenvolva e implemente estratégias de trading automatizado com Python e machine learning.",
-      imagem: "🤖",
+      imagem: "◎",
       cor: "#6b7280",
       destaque: true,
       aulas: 52,
@@ -171,7 +171,7 @@ const Cursos = () => {
       rating: 4.7,
       alunos: 2134,
       descricao: "Aprenda a negociar commodities como ouro, petróleo, soja e outros ativos físicos.",
-      imagem: "🌾",
+      imagem: "◆",
       cor: "#78716c",
       destaque: false,
       aulas: 24,
@@ -201,16 +201,16 @@ const Cursos = () => {
 
   const getCategoriaIcon = (categoria) => {
     const icons = {
-      'Análise': '📈',
-      'Básico': '🎯',
-      'Trading': '⚡',
-      'Psicologia': '🧠',
-      'Crypto': '₿',
-      'Derivativos': '📋',
-      'Algoritmos': '🤖',
-      'Commodities': '🌾'
+      'Análise': '',
+      'Básico': '',
+      'Trading': '',
+      'Psicologia': '',
+      'Crypto': '',
+      'Derivativos': '',
+      'Algoritmos': '',
+      'Commodities': ''
     };
-    return icons[categoria] || '📚';
+    return icons[categoria] || '';
   };
 
   if (loading) {
@@ -231,7 +231,7 @@ const Cursos = () => {
                   fontSize: '20px'
                 }}
               >
-                📚
+                ◉
               </span>
               <div>
                 <div style={{ fontSize: '1.8rem', letterSpacing: '-0.5px' }}>
@@ -321,7 +321,7 @@ const Cursos = () => {
                 boxShadow: '0 4px 15px rgba(249, 115, 22, 0.3)'
               }}
             >
-              🔥 {cursos.length} Cursos Disponíveis
+              ◉ {cursos.length} CURSOS DISPONÍVEIS
             </Badge>
           </div>
         </div>
@@ -356,7 +356,7 @@ const Cursos = () => {
                         padding: '6px 12px'
                       }}
                     >
-                      🔥 Destaque
+                      ◆ DESTAQUE
                     </Badge>
                   </div>
                 )}
@@ -378,6 +378,7 @@ const Cursos = () => {
                           height: '45px',
                           background: `linear-gradient(135deg, ${curso.cor}, ${curso.cor}CC)`,
                           fontSize: '20px',
+                          color: 'white',
                           boxShadow: `0 4px 15px ${curso.cor}40`
                         }}
                       >
@@ -426,7 +427,7 @@ const Cursos = () => {
                     <Row className="g-2">
                       <Col xs={6}>
                         <div className="d-flex align-items-center">
-                          <span className="me-2" style={{ fontSize: '12px' }}>⏱️</span>
+                          <span className="me-2" style={{ fontSize: '12px' }}>◷</span>
                           <small className="text-light" style={{ fontSize: '11px', opacity: '0.8' }}>
                             {curso.duracao}
                           </small>
@@ -434,7 +435,7 @@ const Cursos = () => {
                       </Col>
                       <Col xs={6}>
                         <div className="d-flex align-items-center">
-                          <span className="me-2" style={{ fontSize: '12px' }}>📚</span>
+                          <span className="me-2" style={{ fontSize: '12px' }}>◉</span>
                           <small className="text-light" style={{ fontSize: '11px', opacity: '0.8' }}>
                             {curso.aulas} aulas
                           </small>
@@ -442,7 +443,7 @@ const Cursos = () => {
                       </Col>
                       <Col xs={6}>
                         <div className="d-flex align-items-center">
-                          <span className="me-2" style={{ fontSize: '12px' }}>⭐</span>
+                          <span className="me-2" style={{ fontSize: '12px' }}>◐</span>
                           <small className="text-light" style={{ fontSize: '11px', opacity: '0.8' }}>
                             {curso.rating} ({curso.alunos} alunos)
                           </small>
@@ -450,7 +451,7 @@ const Cursos = () => {
                       </Col>
                       <Col xs={6}>
                         <div className="d-flex align-items-center">
-                          <span className="me-2" style={{ fontSize: '12px' }}>🏆</span>
+                          <span className="me-2" style={{ fontSize: '12px' }}>◇</span>
                           <small className="text-light" style={{ fontSize: '11px', opacity: '0.8' }}>
                             {getCategoriaIcon(curso.categoria)} {curso.categoria}
                           </small>
@@ -468,12 +469,12 @@ const Cursos = () => {
                           style={{ 
                             fontSize: '9px', 
                             padding: '2px 6px',
-                            background: 'rgba(34, 197, 94, 0.2) !important',
-                            color: '#22c55e',
-                            border: '1px solid rgba(34, 197, 94, 0.3)'
+                            background: 'rgba(100, 116, 139, 0.2) !important',
+                            color: '#cbd5e1',
+                            border: '1px solid rgba(100, 116, 139, 0.3)'
                           }}
                         >
-                          🏅 Certificado
+                          ◎ CERTIFICADO
                         </Badge>
                       )}
                       {curso.acessoVitalicio && (
@@ -482,12 +483,12 @@ const Cursos = () => {
                           style={{ 
                             fontSize: '9px', 
                             padding: '2px 6px',
-                            background: 'rgba(59, 130, 246, 0.2) !important',
-                            color: '#3b82f6',
-                            border: '1px solid rgba(59, 130, 246, 0.3)'
+                            background: 'rgba(71, 85, 105, 0.2) !important',
+                            color: '#cbd5e1',
+                            border: '1px solid rgba(71, 85, 105, 0.3)'
                           }}
                         >
-                          ♾️ Vitalício
+                          ◈ VITALÍCIO
                         </Badge>
                       )}
                     </div>
@@ -501,8 +502,8 @@ const Cursos = () => {
                           className="fw-bold"
                           style={{ 
                             fontSize: '18px',
-                            color: '#22c55e',
-                            textShadow: '0 0 10px rgba(34, 197, 94, 0.3)'
+                            color: '#e2e8f0',
+                            textShadow: '0 0 10px rgba(226, 232, 240, 0.2)'
                           }}
                         >
                           {curso.preco}
@@ -516,8 +517,8 @@ const Cursos = () => {
                       </div>
                       <div className="text-end">
                         <small 
-                          className="text-success fw-bold"
-                          style={{ fontSize: '11px' }}
+                          className="text-light fw-bold"
+                          style={{ fontSize: '11px', color: '#cbd5e1' }}
                         >
                           {Math.round((1 - parseFloat(curso.preco.replace('R$ ', '').replace('.', '')) / parseFloat(curso.precoOriginal.replace('R$ ', '').replace('.', ''))) * 100)}% OFF
                         </small>
@@ -547,7 +548,7 @@ const Cursos = () => {
                       e.target.style.boxShadow = `0 4px 15px ${curso.cor}40`;
                     }}
                   >
-                    🚀 Começar Agora
+                    ▶ COMEÇAR AGORA
                   </Button>
                 </Card.Body>
               </Card>
@@ -560,7 +561,7 @@ const Cursos = () => {
           <Col>
             <Card className="card-dark">
               <Card.Body className="text-center py-4">
-                <h5 className="text-white mb-3">🎓 Transforme sua carreira financeira</h5>
+                <h5 className="text-white mb-3">◆ TRANSFORME SUA CARREIRA FINANCEIRA</h5>
                 <Row className="g-3">
                   <Col md={3} sm={6}>
                     <div className="text-center">
@@ -598,8 +599,8 @@ const Cursos = () => {
                         className="fw-bold mb-1"
                         style={{ 
                           fontSize: '24px',
-                          color: '#3b82f6',
-                          textShadow: '0 0 10px rgba(59, 130, 246, 0.3)'
+                          color: '#94a3b8',
+                          textShadow: '0 0 10px rgba(148, 163, 184, 0.2)'
                         }}
                       >
                         175+
@@ -613,8 +614,8 @@ const Cursos = () => {
                         className="fw-bold mb-1"
                         style={{ 
                           fontSize: '24px',
-                          color: '#8b5cf6',
-                          textShadow: '0 0 10px rgba(139, 92, 246, 0.3)'
+                          color: '#64748b',
+                          textShadow: '0 0 10px rgba(100, 116, 139, 0.2)'
                         }}
                       >
                         24/7

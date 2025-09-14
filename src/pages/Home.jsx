@@ -65,7 +65,7 @@ const Home = () => {
                   boxShadow: '0 4px 15px rgba(249, 115, 22, 0.1)'
                 }}
               >
-                🔴 Dados de Mercado
+                ◉ DADOS DE MERCADO AO VIVO
               </span>
             </div>
             <h1 
