@@ -15,6 +15,7 @@ import IndiceAgricolas from '../components/indices/IndiceAgricolas';
 import IndiceEnergia from '../components/indices/IndiceEnergia';
 import IndiceFuturos from '../components/indices/IndiceFuturos';
 import IndiceNasdaq from '../components/indices/IndiceNasdaq';
+import IndiceComparativo from '../components/indices/IndiceComparativo';
 
 
 const Home = () => {
@@ -253,7 +254,9 @@ const Home = () => {
             <Col lg={6} md={6} sm={12}>
               <IndiceEnergia />
             </Col>
-            
+            <Col lg={6} md={6} sm={12}>
+              <IndiceComparativo />
+            </Col>
           </Row>
                       
             {/* Calendário Econômico */}
