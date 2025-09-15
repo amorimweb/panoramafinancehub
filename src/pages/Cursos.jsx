@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, Badge } from 'react-bootstrap';
+import { useTheme } from '../contexts/ThemeContext';
 
 const Cursos = () => {
   const [cursos, setCursos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { isDarkMode, colors } = useTheme();
 
   // Dados aleatórios de cursos
   const cursosData = [
@@ -219,15 +221,17 @@ const Cursos = () => {
         <div className="p-5 main-container" style={{ paddingTop: '3rem', paddingBottom: '4rem' }}>
           {/* Header da seção */}
           <div className="d-flex align-items-center justify-content-between mb-4">
-            <h2 className="text-white fw-bold mb-0 d-flex align-items-center">
+            <h2 className="fw-bold mb-0 d-flex align-items-center" style={{ color: colors.text }}>
               <span 
                 className="me-4 rounded-4 d-flex align-items-center justify-content-center"
                 style={{
                   width: '50px',
                   height: '50px',
                   background: 'linear-gradient(135deg, rgba(249, 115, 22, 0.9), rgba(234, 88, 12, 0.8))',
-                  boxShadow: '0 8px 25px rgba(249, 115, 22, 0.3), 0 0 20px rgba(249, 115, 22, 0.1)',
-                  border: '2px solid rgba(249, 115, 22, 0.3)',
+                  boxShadow: isDarkMode 
+                    ? '0 8px 25px rgba(249, 115, 22, 0.3), 0 0 20px rgba(249, 115, 22, 0.1)'
+                    : '0 4px 15px rgba(249, 115, 22, 0.2)',
+                  border: `2px solid ${colors.border}`,
                   fontSize: '20px'
                 }}
               >
@@ -238,11 +242,12 @@ const Cursos = () => {
                   Cursos Premium
                 </div>
                 <small 
-                  className="fw-medium d-block text-white" 
+                  className="fw-medium d-block" 
                   style={{ 
                     fontSize: '12px', 
                     letterSpacing: '1px',
-                    marginTop: '2px'
+                    marginTop: '2px',
+                    color: colors.textMuted
                   }}
                 >
                   Desenvolva suas habilidades em trading
@@ -254,13 +259,13 @@ const Cursos = () => {
           <Row className="g-4">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
               <Col lg={4} md={6} sm={12} key={i}>
-                <Card className="card-dark h-100">
+                <Card className="h-100" style={{ backgroundColor: colors.cardBg, border: `1px solid ${colors.border}` }}>
                   <Card.Body className="d-flex align-items-center justify-content-center" style={{ minHeight: '300px' }}>
                     <div className="text-center">
                       <div className="spinner-border text-warning mb-2" role="status" style={{width: '2rem', height: '2rem'}}>
-                        <span className="visually-hidden">Carregando...</span>
+                        <span className="visualmente-hidden">Carregando...</span>
                       </div>
-                      <p className="text-light" style={{ opacity: '0.8' }}>Carregando cursos...</p>
+                      <p className="small" style={{ color: colors.textMuted }}>Carregando cursos...</p>
                     </div>
                   </Card.Body>
                 </Card>
@@ -277,15 +282,17 @@ const Cursos = () => {
       <div className="p-5 main-container" style={{ paddingTop: '3rem', paddingBottom: '4rem' }}>
         {/* Header da seção */}
         <div className="d-flex align-items-center justify-content-between mb-4">
-          <h2 className="text-white fw-bold mb-0 d-flex align-items-center">
+          <h2 className="fw-bold mb-0 d-flex align-items-center" style={{ color: colors.text }}>
             <span 
               className="me-4 rounded-4 d-flex align-items-center justify-content-center"
               style={{
                 width: '50px',
                 height: '50px',
                 background: 'linear-gradient(135deg, rgba(249, 115, 22, 0.9), rgba(234, 88, 12, 0.8))',
-                boxShadow: '0 8px 25px rgba(249, 115, 22, 0.3), 0 0 20px rgba(249, 115, 22, 0.1)',
-                border: '2px solid rgba(249, 115, 22, 0.3)',
+                boxShadow: isDarkMode 
+                  ? '0 8px 25px rgba(249, 115, 22, 0.3), 0 0 20px rgba(249, 115, 22, 0.1)'
+                  : '0 4px 15px rgba(249, 115, 22, 0.2)',
+                border: `2px solid ${colors.border}`,
                 fontSize: '20px'
               }}
             >
@@ -296,11 +303,12 @@ const Cursos = () => {
                 Cursos Premium
               </div>
               <small 
-                className="fw-medium d-block text-white" 
+                className="fw-medium d-block" 
                 style={{ 
                   fontSize: '12px', 
                   letterSpacing: '1px',
-                  marginTop: '2px'
+                  marginTop: '2px',
+                  color: colors.textMuted
                 }}
               >
                 Desenvolva suas habilidades em trading
@@ -317,8 +325,8 @@ const Cursos = () => {
                 letterSpacing: '0.5px',
                 textTransform: 'uppercase',
                 background: 'linear-gradient(135deg, rgba(249, 115, 22, 0.9), rgba(234, 88, 12, 0.8)) !important',
-                border: '1px solid rgba(249, 115, 22, 0.3)',
-                boxShadow: '0 4px 15px rgba(249, 115, 22, 0.3)'
+                border: `1px solid ${colors.border}`,
+                boxShadow: isDarkMode ? '0 4px 15px rgba(249, 115, 22, 0.3)' : '0 2px 10px rgba(249, 115, 22, 0.2)'
               }}
             >
               ◉ {cursos.length} CURSOS DISPONÍVEIS
@@ -331,12 +339,17 @@ const Cursos = () => {
           {cursos.map((curso) => (
             <Col lg={4} md={6} sm={12} key={curso.id}>
               <Card 
-                className="card-dark h-100 position-relative"
+                className="h-100 position-relative"
                 style={{
-                  border: curso.destaque ? '2px solid rgba(249, 115, 22, 0.4)' : '1px solid rgba(249, 115, 22, 0.2)',
-                  boxShadow: curso.destaque ? 
-                    '0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(249, 115, 22, 0.2), 0 0 30px rgba(249, 115, 22, 0.15)' :
-                    '0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(249, 115, 22, 0.1)'
+                  backgroundColor: colors.cardBg,
+                  border: curso.destaque ? `2px solid ${colors.border}` : `1px solid ${colors.border}`,
+                  boxShadow: isDarkMode
+                    ? (curso.destaque 
+                        ? '0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(249, 115, 22, 0.2), 0 0 30px rgba(249, 115, 22, 0.15)'
+                        : '0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(249, 115, 22, 0.1)')
+                    : (curso.destaque
+                        ? '0 10px 30px -10px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(249, 115, 22, 0.15)'
+                        : '0 8px 20px -8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(249, 115, 22, 0.1)')
                 }}
               >
                 {/* Badge de destaque */}
@@ -348,7 +361,7 @@ const Cursos = () => {
                     <Badge 
                       style={{
                         background: 'linear-gradient(135deg, rgba(249, 115, 22, 0.9), rgba(234, 88, 12, 0.8))',
-                        border: '1px solid rgba(249, 115, 22, 0.3)',
+                        border: `1px solid ${colors.border}`,
                         fontSize: '10px',
                         fontWeight: '700',
                         letterSpacing: '0.5px',
@@ -366,7 +379,7 @@ const Cursos = () => {
                   className="border-0 px-4 py-3"
                   style={{ 
                     background: `linear-gradient(135deg, ${curso.cor}20, ${curso.cor}10)`,
-                    borderBottom: `1px solid ${curso.cor}30`
+                    borderBottom: `1px solid ${colors.border}`
                   }}
                 >
                   <div className="d-flex align-items-center justify-content-between">
@@ -385,10 +398,10 @@ const Cursos = () => {
                         {curso.imagem}
                       </div>
                       <div>
-                        <h6 className="text-white mb-0 fw-bold" style={{ fontSize: '14px' }}>
+                        <h6 className="mb-0 fw-bold" style={{ fontSize: '14px', color: colors.text }}>
                           {curso.titulo}
                         </h6>
-                        <small className="text-light" style={{ fontSize: '11px', opacity: '0.8' }}>
+                        <small className="d-block" style={{ fontSize: '11px', color: colors.textMuted }}>
                           por {curso.instrutor}
                         </small>
                       </div>
@@ -411,12 +424,12 @@ const Cursos = () => {
                 <Card.Body className="px-4 py-3">
                   {/* Descrição */}
                   <p 
-                    className="text-light mb-3"
+                    className="mb-3"
                     style={{ 
                       fontSize: '13px', 
                       lineHeight: '1.4',
                       minHeight: '40px',
-                      opacity: '0.9'
+                      color: colors.textMuted
                     }}
                   >
                     {curso.descricao}
@@ -428,7 +441,7 @@ const Cursos = () => {
                       <Col xs={6}>
                         <div className="d-flex align-items-center">
                           <span className="me-2" style={{ fontSize: '12px' }}>◷</span>
-                          <small className="text-light" style={{ fontSize: '11px', opacity: '0.8' }}>
+                          <small className="d-block" style={{ fontSize: '11px', color: colors.textMuted }}>
                             {curso.duracao}
                           </small>
                         </div>
@@ -436,7 +449,7 @@ const Cursos = () => {
                       <Col xs={6}>
                         <div className="d-flex align-items-center">
                           <span className="me-2" style={{ fontSize: '12px' }}>◉</span>
-                          <small className="text-light" style={{ fontSize: '11px', opacity: '0.8' }}>
+                          <small className="d-block" style={{ fontSize: '11px', color: colors.textMuted }}>
                             {curso.aulas} aulas
                           </small>
                         </div>
@@ -444,7 +457,7 @@ const Cursos = () => {
                       <Col xs={6}>
                         <div className="d-flex align-items-center">
                           <span className="me-2" style={{ fontSize: '12px' }}>◐</span>
-                          <small className="text-light" style={{ fontSize: '11px', opacity: '0.8' }}>
+                          <small className="d-block" style={{ fontSize: '11px', color: colors.textMuted }}>
                             {curso.rating} ({curso.alunos} alunos)
                           </small>
                         </div>
@@ -452,7 +465,7 @@ const Cursos = () => {
                       <Col xs={6}>
                         <div className="d-flex align-items-center">
                           <span className="me-2" style={{ fontSize: '12px' }}>◇</span>
-                          <small className="text-light" style={{ fontSize: '11px', opacity: '0.8' }}>
+                          <small className="d-block" style={{ fontSize: '11px', color: colors.textMuted }}>
                             {getCategoriaIcon(curso.categoria)} {curso.categoria}
                           </small>
                         </div>
@@ -469,9 +482,9 @@ const Cursos = () => {
                           style={{ 
                             fontSize: '9px', 
                             padding: '2px 6px',
-                            background: 'rgba(100, 116, 139, 0.2) !important',
-                            color: '#cbd5e1',
-                            border: '1px solid rgba(100, 116, 139, 0.3)'
+                            background: isDarkMode ? 'rgba(100, 116, 139, 0.2) !important' : 'rgba(100, 116, 139, 0.12) !important',
+                            color: colors.text,
+                            border: `1px solid ${colors.border}`
                           }}
                         >
                           ◎ CERTIFICADO
@@ -483,9 +496,9 @@ const Cursos = () => {
                           style={{ 
                             fontSize: '9px', 
                             padding: '2px 6px',
-                            background: 'rgba(71, 85, 105, 0.2) !important',
-                            color: '#cbd5e1',
-                            border: '1px solid rgba(71, 85, 105, 0.3)'
+                            background: isDarkMode ? 'rgba(71, 85, 105, 0.2) !important' : 'rgba(71, 85, 105, 0.12) !important',
+                            color: colors.text,
+                            border: `1px solid ${colors.border}`
                           }}
                         >
                           ◈ VITALÍCIO
@@ -502,23 +515,23 @@ const Cursos = () => {
                           className="fw-bold"
                           style={{ 
                             fontSize: '18px',
-                            color: '#e2e8f0',
-                            textShadow: '0 0 10px rgba(226, 232, 240, 0.2)'
+                            color: colors.text,
+                            textShadow: isDarkMode ? '0 0 10px rgba(226, 232, 240, 0.2)' : '0 1px 2px rgba(0, 0, 0, 0.08)'
                           }}
                         >
                           {curso.preco}
                         </span>
                         <span 
-                          className="text-light text-decoration-line-through ms-2"
-                          style={{ fontSize: '12px', opacity: '0.6' }}
+                          className="text-decoration-line-through ms-2"
+                          style={{ fontSize: '12px', color: colors.textMuted }}
                         >
                           {curso.precoOriginal}
                         </span>
                       </div>
                       <div className="text-end">
                         <small 
-                          className="text-light fw-bold"
-                          style={{ fontSize: '11px', color: '#cbd5e1' }}
+                          className="fw-bold"
+                          style={{ fontSize: '11px', color: colors.textMuted }}
                         >
                           {Math.round((1 - parseFloat(curso.preco.replace('R$ ', '').replace('.', '')) / parseFloat(curso.precoOriginal.replace('R$ ', '').replace('.', ''))) * 100)}% OFF
                         </small>
@@ -559,9 +572,9 @@ const Cursos = () => {
         {/* Seção de estatísticas */}
         <Row className="mt-5">
           <Col>
-            <Card className="card-dark">
+            <Card className="h-100" style={{ backgroundColor: colors.cardBg, border: `1px solid ${colors.border}` }}>
               <Card.Body className="text-center py-4">
-                <h5 className="text-white mb-3">◆ TRANSFORME SUA CARREIRA FINANCEIRA</h5>
+                <h5 className="mb-3" style={{ color: colors.text }}>◆ TRANSFORME SUA CARREIRA FINANCEIRA</h5>
                 <Row className="g-3">
                   <Col md={3} sm={6}>
                     <div className="text-center">
@@ -569,13 +582,12 @@ const Cursos = () => {
                         className="fw-bold mb-1"
                         style={{ 
                           fontSize: '24px',
-                          color: '#e2e8f0',
-                          textShadow: '0 0 10px rgba(226, 232, 240, 0.2)'
+                          color: colors.text
                         }}
                       >
                         15.970+
                       </div>
-                      <small className="text-light" style={{ opacity: '0.8' }}>Alunos Formados</small>
+                      <small className="d-block" style={{ color: colors.textMuted }}>Alunos Formados</small>
                     </div>
                   </Col>
                   <Col md={3} sm={6}>
@@ -584,13 +596,12 @@ const Cursos = () => {
                         className="fw-bold mb-1"
                         style={{ 
                           fontSize: '24px',
-                          color: '#cbd5e1',
-                          textShadow: '0 0 10px rgba(203, 213, 225, 0.2)'
+                          color: colors.text
                         }}
                       >
                         98%
                       </div>
-                      <small className="text-light" style={{ opacity: '0.8' }}>Taxa de Satisfação</small>
+                      <small className="d-block" style={{ color: colors.textMuted }}>Taxa de Satisfação</small>
                     </div>
                   </Col>
                   <Col md={3} sm={6}>
@@ -599,13 +610,12 @@ const Cursos = () => {
                         className="fw-bold mb-1"
                         style={{ 
                           fontSize: '24px',
-                          color: '#94a3b8',
-                          textShadow: '0 0 10px rgba(148, 163, 184, 0.2)'
+                          color: colors.text
                         }}
                       >
                         175+
                       </div>
-                      <small className="text-light" style={{ opacity: '0.8' }}>Aulas Disponíveis</small>
+                      <small className="d-block" style={{ color: colors.textMuted }}>Aulas Disponíveis</small>
                     </div>
                   </Col>
                   <Col md={3} sm={6}>
@@ -614,13 +624,12 @@ const Cursos = () => {
                         className="fw-bold mb-1"
                         style={{ 
                           fontSize: '24px',
-                          color: '#64748b',
-                          textShadow: '0 0 10px rgba(100, 116, 139, 0.2)'
+                          color: colors.text
                         }}
                       >
                         24/7
                       </div>
-                      <small className="text-light" style={{ opacity: '0.8' }}>Suporte Online</small>
+                      <small className="d-block" style={{ color: colors.textMuted }}>Suporte Online</small>
                     </div>
                   </Col>
                 </Row>

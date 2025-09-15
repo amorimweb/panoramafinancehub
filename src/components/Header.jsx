@@ -90,15 +90,17 @@ const Header = () => {
             <Button
               onClick={toggleTheme}
               variant="outline-light"
-              className="px-3 py-2 d-flex align-items-center mb-2 mb-lg-0"
+              className="px-2 py-2 d-flex align-items-center mb-2 mb-lg-0 theme-toggle-btn"
               style={{
                 borderColor: colors.border,
                 color: colors.accent,
                 background: 'rgba(249, 115, 22, 0.1)',
                 borderRadius: '12px',
                 transition: 'all 0.3s ease',
-                fontSize: '14px',
-                minWidth: 'auto'
+                fontSize: '16px',
+                width: '40px',
+                height: '40px',
+                padding: 0
               }}
               onMouseEnter={(e) => {
                 e.target.style.background = 'rgba(249, 115, 22, 0.2)';
@@ -109,11 +111,9 @@ const Header = () => {
                 e.target.style.transform = 'scale(1)';
               }}
               title={isDarkMode ? 'Alternar para modo claro' : 'Alternar para modo escuro'}
+              aria-label={isDarkMode ? 'Alternar para modo claro' : 'Alternar para modo escuro'}
             >
-              {isDarkMode ? '☀️' : '🌙'} 
-              <span className="ms-1 d-none d-md-inline">
-                {isDarkMode ? 'Claro' : 'Escuro'}
-              </span>
+              {isDarkMode ? '☀️' : '🌙'}
             </Button>
 
           <Link to="/" className="text-decoration-none">
