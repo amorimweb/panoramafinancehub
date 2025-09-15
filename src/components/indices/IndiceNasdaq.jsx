@@ -43,6 +43,7 @@ const IndiceNasdaq = () => {
               "name": "NASDAQ",
               "originalName": "NASDAQ",
               "symbols": [
+                { "name": "NASDAQ:NVDA", "displayName": "NVDA" },
                 { "name": "NASDAQ:AAPL", "displayName": "Apple" },
                 { "name": "NASDAQ:MSFT", "displayName": "Microsoft" },
                 { "name": "NASDAQ:GOOGL", "displayName": "Google" },
