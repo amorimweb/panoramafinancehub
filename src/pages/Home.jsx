@@ -15,6 +15,7 @@ import IndiceAgricolas from '../components/indices/IndiceAgricolas';
 import IndiceEnergia from '../components/indices/IndiceEnergia';
 import IndiceFuturos from '../components/indices/IndiceFuturos';
 import IndiceNasdaq from '../components/indices/IndiceNasdaq';
+import MarketIndexCards from '../components/MarketIndexCards';
 
 const Home = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -173,6 +174,7 @@ const Home = () => {
           
           {/* Market Ticker */}
           <div id="ticker">
+            <MarketIndexCards />
             <Ticker />
           </div>
           
